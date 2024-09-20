@@ -1,0 +1,26 @@
+nz-collapse {
+    border: 0 !important; 
+}
+
+nz-collapse-panel {
+    border: 0 !important; 
+} 
+.ant-collapse-header {
+    padding: 10px 30px !important;
+    margin: 0 !important;
+    font-weight: 600 !important;
+    font-size: .7rem;
+    color: rgb(100, 100, 100) !important;
+}
+
+.ant-collapse-header .ant-collapse-header-text {
+    margin: 0 !important;
+
+} 
+.form-settings {
+    font-size: .7rem !important;
+    font-weight: 600 !important;
+    color: rgb(100, 100, 100) !important;
+    display: flex !important; 
+    flex-direction: column !important;
+}

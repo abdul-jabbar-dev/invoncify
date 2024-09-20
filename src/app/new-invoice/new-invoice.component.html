@@ -1,0 +1,81 @@
+<app-generic-layout>
+    <div header class="flex justify-between">
+
+        <p class="mb-0 font-bold">Create A New Invoice</p>
+        <div>
+            <button style="margin-right: 14px;" class=" btn bg-danger text-white ">Clear</button>
+            <button class="btn bg-secondary text-white">Primary Button</button>
+        </div>
+
+    </div>
+    <div content>
+
+
+        <nz-collapse [nzExpandIconPosition]="'right'">
+            <nz-collapse-panel [nzHeader]="'FORM SETTINGS'" [nzActive]="'false'">
+                <div style="margin-left: 15px; ">
+                    <p style="font-size: 10px; color: rgb(145, 145, 145);">Toggle any field to make it required in
+                        the
+                        form.</p>
+                    <div style="display: flex; gap: 0 20px;">
+                        <span class="form-settings ">
+                            INVOICE ID
+                            <nz-switch style="width: min-content; margin: 5px auto;"
+                                [(ngModel)]="isInvoice"></nz-switch>
+                        </span>
+                        <span class="form-settings">
+                            DUE DATE
+                            <nz-switch style="width: min-content; margin: 5px auto;"
+                                [(ngModel)]="isDueDate"></nz-switch>
+                        </span>
+                        <span class="form-settings ">
+                            CURRENCY
+                            <nz-switch style="width: min-content; margin: 5px auto;"
+                                [(ngModel)]="isCurrency"></nz-switch>
+                        </span>
+                        <span class="form-settings ">
+                            DISCOUNT
+                            <nz-switch style="width: min-content; margin: 5px auto;"
+                                [(ngModel)]="isDiscount"></nz-switch>
+                        </span>
+                        <span class="form-settings ">
+                            TAX
+                            <nz-switch style="width: min-content; margin: 5px auto;" [(ngModel)]="isTax"></nz-switch>
+                        </span>
+                        <span class="form-settings ">
+                            NOTE
+                            <nz-switch style="width: min-content; margin: 5px auto;" [(ngModel)]="isNote"></nz-switch>
+                        </span>
+                        <span class="form-settings ">
+                            PAYMENT
+                            <nz-switch style="width: min-content; margin: 5px auto;"
+                                [(ngModel)]="isPayment"></nz-switch>
+                        </span>
+                    </div>
+                </div>
+            </nz-collapse-panel>
+        </nz-collapse>
+
+        <div class="px-7 border-t py-3">
+            <p class="title-text">RECIPIENT *</p>
+
+            <nz-radio-group class="flex flex-col mt-3" nz [(ngModel)]="isNewContact">
+                <label nz-radio [nzValue]="true">Create New</label>
+                <label nz-radio [nzValue]="false">Select</label>
+            </nz-radio-group>
+<!-- working on new invoice page radio is not working when i use condition based on isNewContact -->
+            <div>
+                <div *ngIf="!isNewContact"><app-create-new></app-create-new></div>
+
+                <div *ngIf="!!isNewContact">
+                    <nz-select [(ngModel)]="selectedContact" class="w-full">
+                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</app-generic-layout>

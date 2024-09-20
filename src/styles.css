@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+   font-family: 'Montserrat';
+}
+
+.btn {
+   padding: 2px 10px;
+   cursor: pointer;
+   border: 0;
+   border-radius: 3px;
+   font-size: .8rem;
+   outline: 0;
+   background-color: white;
+}
+
+.title-text {
+   font-size: .7rem !important;
+   font-weight: 600 !important;
+   color: rgb(100, 100, 100) !important;
+}
+
+.group-btn {
+   border-radius: 0 !important;
+   font-size: 11px !important;
+   color: black !important;
+   padding: 4px 11px !important;
+   border: 0.5px solid rgb(230, 230, 230) !important;
+}
+
+.g-f {
+   border-radius: 3px 00px 0px 3px !important;
+   margin-top: 2px !important;
+}
+
+.selected-btn {
+   background: rgba(231, 231, 231, 0.541);
+
+}
+
+.g-l {
+   border-radius: 0px 3px 3px 0px !important;
+}
+
+.text-primary {
+   color: #469fe5 !important
+}
+
+.text-secondary {
+   color: #6ab168 !important;
+}
+
+.text-danger {
+   color: #ec476e !important
+}
+
+.text-white {
+   color: #ffffff !important
+}
+
+.bg-primary {
+
+   background-color: #469fe5 !important
+}
+
+.bg-secondary {
+   background-color: #6ab168 !important;
+}
+
+.bg-danger {
+   background-color: #ec476e !important
+}

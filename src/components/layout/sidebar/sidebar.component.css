@@ -1,0 +1,32 @@
+.side-bar-list-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.side-bar-list {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+}
+
+.side-bar-list-selected {
+    background: #01111f;
+}
+
+.side-bar-list-selected::after {
+    content: '';
+    width: 3px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #469fe5;
+    position: absolute;
+}
+
+.side-icon {
+    width: 17px;
+}
+
+ 
