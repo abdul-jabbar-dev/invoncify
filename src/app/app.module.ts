@@ -1,3 +1,7 @@
+import { CreatePrepaymentComponent } from './../components/new-invoice-component/create-prepayment/create-prepayment.component';
+import { PrepaymentsComponent } from './../components/new-invoice-component/prepayments/prepayments.component';
+import { DynamicInputComponent } from './../components/common/dynamic-input/dynamic-input.component';
+import { NewServiceComponent } from './../components/new-invoice-component/new-service/new-service.component';
 import { CreateNewComponent } from './../components/new-invoice-component/create-new/create-new.component';
 import { SidebarComponent } from './../components/layout/sidebar/sidebar.component';
 import { NgModule } from '@angular/core';
@@ -24,7 +28,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -32,6 +39,7 @@ const ngZorroConfig: NzConfig = {
 };
 @NgModule({
   declarations: [
+    PrepaymentsComponent,
     AppComponent,
     NewInvoiceComponent,
     ListInvoiceComponent,
@@ -41,6 +49,10 @@ const ngZorroConfig: NzConfig = {
     SidebarComponent,
     GenericLayoutComponent,
     CreateNewComponent,
+    NewServiceComponent,
+    DynamicInputComponent,
+    PrepaymentsComponent,
+    CreatePrepaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +67,10 @@ const ngZorroConfig: NzConfig = {
     NzSwitchModule,
     NzRadioModule,
     NzSelectModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    DragDropModule
+    
   ],
   providers: [
     { provide: NZ_CONFIG, useValue: ngZorroConfig },

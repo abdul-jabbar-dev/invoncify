@@ -14,7 +14,8 @@ export class NewInvoiceComponent {
   isTax: any;
   isNote: any;
   isPayment: any;
-  isNewContact = false;
   selectedContact: any;
+  isNewContact: boolean = true;
+
   constructor() {}
 }

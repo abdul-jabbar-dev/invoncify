@@ -12,7 +12,13 @@
  }
 
  .cnz-content {
-     border: 1px solid rgba(194, 194, 194, 0.904) !important;
+     
      border-radius: 2.5px;
      background-color: white !important;
  }
+ .cnz-content-border {
+    border: 1px solid rgba(194, 194, 194, 0.904) !important;
+     border-radius: 2.5px;
+     background-color: white !important;
+ }
+ 

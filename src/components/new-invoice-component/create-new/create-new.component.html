@@ -1,33 +1,33 @@
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-    <div class="bg-slate-100 w-full p-6 rounded-sm">
+<form (ngSubmit)="onSubmit()" #form="ngForm" >
+    <div class="bg-slate-50 w-full p-6 rounded-md">
         <div class="flex gap-x-8 w-full">
             <div class="w-full">
-                <label class="title-text" for="">FULL NAME</label>
-                <input class="my-3 focus:outline-0 px-3 py-1 rounded-sm border-[0.2px]  border-gray-200 bg-white w-full"
-                    nz-input placeholder="" [(ngModel)]="fullName" type="text" />
+                <label class="title-text" for="fullName">FULL NAME</label>
+                <input class="my-3 focus:outline-0 px-3 py-1 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
+                    nz-input placeholder="" [(ngModel)]="fullName" name="fullName" type="text" />
             </div>
             <div class="w-full">
-                <label class="title-text" for="">COMPANY</label>
-                <input class="my-3 focus:outline-0 px-3 py-1 rounded-sm border-[0.2px]  border-gray-200 bg-white w-full"
-                    nz-input placeholder="" [(ngModel)]="company" type="text" />
+                <label class="title-text" for="company">COMPANY</label>
+                <input class="my-3 focus:outline-0 px-3 py-1 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
+                    nz-input placeholder="" [(ngModel)]="company" name="company" type="text" />
             </div>
         </div>
         <div class="flex gap-x-8">
             <div class="w-full">
-                <label class="title-text" for="">EMAIL</label>
-                <input class="my-3 focus:outline-0 px-3 py-1 rounded-sm border-[0.2px]  border-gray-200 bg-white w-full"
-                    nz-input placeholder="" [(ngModel)]="email" type="text" />
+                <label class="title-text" for="email">EMAIL</label>
+                <input class="my-3 focus:outline-0 px-3 py-1 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
+                    nz-input placeholder="" [(ngModel)]="email" name="email" type="text" />
             </div>
             <div class="w-full">
-                <label class="title-text" for="">PHONE NUMBER</label>
-                <input class="my-3 focus:outline-0 px-3 py-1 rounded-sm border-[0.2px]  border-gray-200 bg-white w-full"
-                    nz-input placeholder="" [(ngModel)]="phoneNumber" type="text" />
+                <label class="title-text" for="phoneNumber">PHONE NUMBER</label>
+                <input class="my-3 focus:outline-0 px-3 py-1 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
+                    nz-input placeholder="" [(ngModel)]="phoneNumber" name="phoneNumber" type="text" />
             </div>
         </div>
         <div class="w-full">
-            <label class="title-text" for="">Address</label>
-            <input class="my-3 focus:outline-0 px-3 py-1 rounded-sm border-[0.2px]  border-gray-200 bg-white w-full"
-                nz-input placeholder="" [(ngModel)]="address" type="text" />
+            <label class="title-text" for="address">Address</label>
+            <input class="my-3 focus:outline-0 px-3 py-1 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
+                nz-input placeholder="" [(ngModel)]="address" name="address" type="text" />
         </div>
     </div>
 </form>

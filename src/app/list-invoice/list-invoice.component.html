@@ -1,5 +1,5 @@
 <app-generic-layout>
-    <div header style="display:  flex; justify-content: space-between;">
+    <div header style="display:flex; justify-content: space-between;">
 
         <p style="margin-bottom: 0; font-weight: 700;">All Invoices</p>
         <div style="display: flex ; align-items: center;">
@@ -36,6 +36,79 @@
 
     </div>
     <div content>
-        list-invoice works!
+
+        <div class="bg-gray-100 flex flex-wrap">
+            <div *ngFor="let item of statusDef" class="p-6 w-full md:w-1/2 lg:w-1/3">
+                <!-- <div class="border-t-[6px] bg-white shadow-md rounded border-pink-600"> -->
+                <div class="border-t-[6px] bg-white shadow-md rounded" [ngClass]="'border'+item.color">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between">
+                        <p class="uppercase items-center flex gap-x-2 title-text-md">
+                            <span [ngClass]="'text' + item.color" class="font-extrabold" nz-icon [nzType]="item.icon" nzTheme="outline"></span>
+                            {{ item.status }}
+                        </p>
+
+
+                            <span class="flex gap-x-2 text-gray-400">
+                                <span nz-icon class="scale-125" nzType="copy" nzTheme="fill"></span>
+                                <span nz-icon class="scale-125" nzType="delete" nzTheme="fill"></span>
+                            </span>
+                        </div>
+                        <div class="uppercase mt-6">
+                            <div class="w-full">
+                                <label for="" class="text-gray-400 text-xs">client</label>
+                                <h2 class="mt-1 mb-3 text-xl">Abdul Jabbar</h2>
+                            </div>
+
+                            <div class="flex justify-between gap-x-4">
+                                <div class="w-full">
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">invoice id</label>
+                                        <h4 class="mt-1 mb-3">457554</h4>
+                                    </div>
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">prepaid</label>
+                                        <h4 class="mt-1 mb-3">USD 0.10</h4>
+                                    </div>
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">created on</label>
+                                        <h4 class="mt-1 mb-3">09/3/2024</h4>
+                                    </div>
+                                </div>
+
+
+                                <div class="w-full">
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">Total value</label>
+                                        <h4 class="mt-1 mb-3">USD 457</h4>
+                                    </div>
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">Remaining balance</label>
+                                        <h4 class="mt-1 mb-3">USD 454.0</h4>
+                                    </div>
+                                    <div>
+                                        <label for="" class="text-gray-400 text-xs">Due date</label>
+                                        <h4 class="mt-1 mb-3">USD 454.0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full uppercase px-8 py-5  flex gap-x-6 border-t border-gray-300">
+                        <button class="py-[5px]  uppercase text-[13px] rounded w-full border border-gray-200">mark as
+                            paid</button>
+                        <span class="w-full flex gap-x-6">
+                            <button
+                                class="py-[5px] uppercase text-[13px]  rounded border w-full border-gray-200">edit</button>
+                            <button
+                                class="py-[5px] uppercase text-[13px]  rounded border w-full border-gray-200">view</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
 </app-generic-layout>

@@ -22,6 +22,11 @@
    font-weight: 600 !important;
    color: rgb(100, 100, 100) !important;
 }
+.title-text-md {
+   font-size: 13px !important;
+   font-weight: 600 !important;
+   color: rgb(100, 100, 100) !important;
+}
 
 .group-btn {
    border-radius: 0 !important;

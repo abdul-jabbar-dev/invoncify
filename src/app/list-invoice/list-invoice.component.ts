@@ -7,4 +7,26 @@ import { Component } from '@angular/core';
 })
 export class ListInvoiceComponent {
   filterBtn = 'PENDING';
+  statusDef = [
+    {
+      status: 'PENDING',
+      color: '-blue-600',
+      icon: 'retweet',
+    },
+    {
+      status: 'CANCELLED',
+      color: '-pink-600',
+      icon: 'close-square',
+    },
+    {
+      status: 'REFUNDED',
+      color: '-gray-700',
+      icon: 'rollback',
+    },
+    {
+      status: 'PAID',
+      color: '-green-600',
+      icon: 'check',
+    },
+  ];
 }
