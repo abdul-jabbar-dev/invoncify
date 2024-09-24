@@ -2,9 +2,21 @@
     <div header style="display:  flex; justify-content: space-between;">
 
         <p style="margin-bottom: 0; font-weight: 700;">Settings</p>
-       
+
     </div>
     <div content>
-        settings
+        <nz-tabset nzType="card" class="w-full rounded">
+            <nz-tab nzta *ngFor="let tab of tabs" [nzTitle]="tab">
+                <ng-container [ngSwitch]="tab">
+                    <div class=" p-12">
+                        <div *ngSwitchCase="'Profile'"> <app-profile-setting /> </div>
+                        <div *ngSwitchCase="'Invoice'"><app-invoice-setting /></div>
+                        <div *ngSwitchCase="'General'"><app-general-setting /></div>
+                        <div *ngSwitchDefault>No Settings found or refresh page</div>
+                    </div>
+                </ng-container>
+            </nz-tab>
+
+        </nz-tabset>
     </div>
 </app-generic-layout>

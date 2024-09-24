@@ -4,6 +4,32 @@
         <p style="margin-bottom: 0; font-weight: 700;">All contacts</p>
     </div>
     <div content>
-        list-contact works!
+
+
+        <div class="border border-gray-300 rounded">
+            <div class="text-gray-500 px-6 py-3 uppercase flex font-semibold">
+                <div class="w-full">contact</div>
+                <div class="w-full">email</div>
+                <div class="w-full">phone</div>
+                <div class="w-min">action</div>
+            </div>
+
+            <div class="border-t border-gray-300 text-gray-500 px-6 py-3 flex">
+                <div class="w-full font-semibold"><span (click)="clipToContante($event)" [id]="1+'contant'"
+                        class="border-b-2 border-dotted border-gray-900">contact</span></div>
+                <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'email'"
+                        class="border-b-2 border-dotted border-gray-900">email</span>
+                </div>
+                <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'phone'"
+                        class="border-b-2 border-dotted border-gray-900">phone</span>
+                </div>
+                <div class="w-min flex gap-x-2">
+                    <span nz-icon nzType="edit" nzTheme="fill"></span>
+                    <span class="text-blue-600" nz-icon nzType="plus" nzTheme="outline"></span>
+                    <span class="text-red-400" nz-icon nzType="close-circle" nzTheme="fill"></span>
+                </div>
+            </div>
+
+        </div>
     </div>
 </app-generic-layout>

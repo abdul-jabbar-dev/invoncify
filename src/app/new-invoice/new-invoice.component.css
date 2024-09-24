@@ -17,10 +17,3 @@ nz-collapse-panel {
     margin: 0 !important;
 
 } 
-.form-settings {
-    font-size: .7rem !important;
-    font-weight: 600 !important;
-    color: rgb(100, 100, 100) !important;
-    display: flex !important; 
-    flex-direction: column !important;
-}

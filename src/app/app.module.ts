@@ -32,6 +32,16 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { InvoiceCardComponent } from 'src/components/list-invoice-component/invoice-card/invoice-card.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { LineChirtComponent } from 'src/components/chart/line-chirt/line-chirt.component';
+import { PieChirtComponent } from 'src/components/chart/pie-chirt/pie-chirt.component';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { ProfileSettingComponent } from 'src/components/settings/profile-setting/profile-setting.component';
+import { InvoiceSettingComponent } from 'src/components/settings/invoice-setting/invoice-setting.component';
+import { GeneralSettingComponent } from 'src/components/settings/general-setting/general-setting.component';
+import { ToggleOptionsComponent } from 'src/components/common/toggle-options/toggle-options.component';
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -52,7 +62,14 @@ const ngZorroConfig: NzConfig = {
     NewServiceComponent,
     DynamicInputComponent,
     PrepaymentsComponent,
-    CreatePrepaymentComponent
+    CreatePrepaymentComponent,
+    InvoiceCardComponent,
+    LineChirtComponent,
+    PieChirtComponent,
+    ProfileSettingComponent,
+    InvoiceSettingComponent,
+    GeneralSettingComponent,
+    ToggleOptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,8 +86,10 @@ const ngZorroConfig: NzConfig = {
     NzSelectModule,
     NzFormModule,
     ReactiveFormsModule,
-    DragDropModule
-    
+    DragDropModule,
+    NzPopoverModule,
+    CanvasJSAngularChartsModule,
+    NzTabsModule,
   ],
   providers: [
     { provide: NZ_CONFIG, useValue: ngZorroConfig },

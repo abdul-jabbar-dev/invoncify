@@ -22,8 +22,26 @@
    font-weight: 600 !important;
    color: rgb(100, 100, 100) !important;
 }
+
+.title-text-normal {
+   font-size: .7rem !important;
+   color: rgb(100, 100, 100) !important;
+}
+
+.form-settings {
+   font-size: .8rem !important; 
+   color: rgb(100, 100, 100) !important;
+
+}
 .title-text-md {
    font-size: 13px !important;
+   font-weight: 600 !important;
+   color: rgb(100, 100, 100) !important;
+}
+
+
+.title-text-lg {
+   font-size: 18px !important;
    font-weight: 600 !important;
    color: rgb(100, 100, 100) !important;
 }
@@ -77,4 +95,9 @@
 
 .bg-danger {
    background-color: #ec476e !important
+}
+
+
+.canvasjs-chart-credit {
+   display: none;
 }

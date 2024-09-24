@@ -14,43 +14,11 @@
         <nz-collapse [nzExpandIconPosition]="'right'">
             <nz-collapse-panel [nzHeader]="'FORM SETTINGS'" [nzActive]="false">
                 <div style="margin-left: 15px;">
-                    <p style="font-size: 10px; color: rgb(145, 145, 145);">
+                    <p class="my-2 text-sm" style="color: rgb(145, 145, 145);">
                         Toggle any field to make it required in the form.
                     </p>
-                    <div style="display: flex; gap: 0 20px;">
-                        <span class="form-settings">
-                            INVOICE ID
-                            <nz-switch style="width: min-content; margin: 5px auto;"
-                                [(ngModel)]="isInvoice"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            DUE DATE
-                            <nz-switch style="width: min-content; margin: 5px auto;"
-                                [(ngModel)]="isDueDate"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            CURRENCY
-                            <nz-switch style="width: min-content; margin: 5px auto;"
-                                [(ngModel)]="isCurrency"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            DISCOUNT
-                            <nz-switch style="width: min-content; margin: 5px auto;"
-                                [(ngModel)]="isDiscount"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            TAX
-                            <nz-switch style="width: min-content; margin: 5px auto;" [(ngModel)]="isTax"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            NOTE
-                            <nz-switch style="width: min-content; margin: 5px auto;" [(ngModel)]="isNote"></nz-switch>
-                        </span>
-                        <span class="form-settings">
-                            PAYMENT
-                            <nz-switch style="width: min-content; margin: 5px auto;"
-                                [(ngModel)]="isPayment"></nz-switch>
-                        </span>
+                    <div class="w-2/4">
+                        <app-toggle-options class="w-full" />
                     </div>
                 </div>
             </nz-collapse-panel>
@@ -83,7 +51,7 @@
             <app-new-service />
         </div>
         <div>
-           <app-prepayments/>
+            <app-prepayments />
         </div>
 
 
