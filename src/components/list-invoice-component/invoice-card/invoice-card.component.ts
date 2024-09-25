@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-card',
@@ -7,12 +8,19 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class InvoiceCardComponent implements OnChanges {
   @Input() item!: {
+    id: string;
     status: string;
     color: string;
     bg: string;
     border: string;
     icon: string;
   };
+  constructor(public router: Router) {}
+
+  goToInvoice(arg0: string) {
+    window.open('/previewer/' + arg0, '_blank');
+  }
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.item);

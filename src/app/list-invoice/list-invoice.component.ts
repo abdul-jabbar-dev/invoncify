@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class ListInvoiceComponent {
   filterBtn = 'PENDING';
   statusDef: {
+    id: string;
     status: string;
     color: string;
     bg: string;
@@ -15,6 +16,7 @@ export class ListInvoiceComponent {
     icon: string;
   }[] = [
     {
+      id: '55d40-4sfsf-5sf50-4sf5a',
       status: 'PENDING',
       color: 'text-blue-600',
       bg: 'bg-blue-600',
@@ -22,6 +24,7 @@ export class ListInvoiceComponent {
       icon: 'retweet',
     },
     {
+      id: '5wr40-4sghd-5sf50-4dh5a',
       status: 'CANCELLED',
       color: 'text-pink-600',
       bg: 'bg-pink-600',
@@ -29,6 +32,7 @@ export class ListInvoiceComponent {
       icon: 'close-square',
     },
     {
+      id: '55s40-4sg4d-5ss50-4s35a',
       status: 'REFUNDED',
       color: 'text-gray-700',
       bg: 'bg-gray-700',
@@ -36,6 +40,7 @@ export class ListInvoiceComponent {
       icon: 'rollback',
     },
     {
+      id: '55d40-fh45g-5sfd0-4sf5a',
       status: 'PAID',
       color: 'text-green-500',
       bg: 'text-green-500',

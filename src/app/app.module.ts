@@ -42,6 +42,11 @@ import { ProfileSettingComponent } from 'src/components/settings/profile-setting
 import { InvoiceSettingComponent } from 'src/components/settings/invoice-setting/invoice-setting.component';
 import { GeneralSettingComponent } from 'src/components/settings/general-setting/general-setting.component';
 import { ToggleOptionsComponent } from 'src/components/common/toggle-options/toggle-options.component';
+import { PreviewerComponent } from './previewer-layout/previewer/previewer.component';
+import { BlankLayoutComponent } from './previewer-layout/previewer-layout.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzTableModule } from 'ng-zorro-antd/table';
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -69,7 +74,9 @@ const ngZorroConfig: NzConfig = {
     ProfileSettingComponent,
     InvoiceSettingComponent,
     GeneralSettingComponent,
-    ToggleOptionsComponent
+    ToggleOptionsComponent,
+    PreviewerComponent,
+    BlankLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +86,7 @@ const ngZorroConfig: NzConfig = {
     BrowserAnimationsModule,
     NzLayoutModule,
     NzIconModule,
+    NzCheckboxModule,
     NzButtonModule,
     NzCollapseModule,
     NzSwitchModule,
@@ -90,6 +98,7 @@ const ngZorroConfig: NzConfig = {
     NzPopoverModule,
     CanvasJSAngularChartsModule,
     NzTabsModule,
+    NzSliderModule,NzTableModule
   ],
   providers: [
     { provide: NZ_CONFIG, useValue: ngZorroConfig },

@@ -1,0 +1,64 @@
+p{{fontSize}}
+<section class="shadow-md p-14 border border-gray-200 w-3/6 min-w-[600px] mx-auto bg-white rounded min-h-screen">
+    <div class="w-full h-full">
+        <div class="w-full">
+            <img [width]="imgWidth * 3"
+                src="https://img.alicdn.com/imgextra/i1/O1CN01RSfkps1J0vtVaKr0U_!!6000000000967-49-tps-1920-1920.webp">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div>
+                        <h2 class="text-lg font-semibold uppercase py-2" [style.fontSize]="fontSize+'px'">Abdul Jabbar
+                        </h2>
+                        <p class="text-gray-400 pb-1" [style.fontSize]="fontSize+'px'">Invocify</p>
+                        <p class="text-gray-400 pb-1" [style.fontSize]="fontSize+'px'">Colombia</p>
+                        <p class="text-gray-400 pb-1" [style.fontSize]="fontSize+'px'">abduljabbar&#64;gmail.com</p>
+                        <p class="text-gray-400 pb-1" [style.fontSize]="fontSize+'px'">+01733941913</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <h1 class="text-3xl uppercase text-slate-400" [style.fontSize]="fontSize+'px'">Citation</h1>
+                    <p class="text-gray-700 pb-1 font-semibold" [style.fontSize]="fontSize+'px'">#145224</p>
+                    <p class="text-gray-400 pb-1" [style.fontSize]="fontSize+'px'">Today September 2024</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <table class="w-full" [cellPadding]="'10px'">
+                <thead class="custom-thead border-b-4 border-gray-400">
+                    <tr>
+                        <th class="text-start w-min py-2 text-gray-600 -tracking-tighter"
+                            [style.fontSize]="fontSize+'px'">NO</th>
+                        <th class="text-start w-full py-2 text-gray-600 -tracking-tighter"
+                            [style.fontSize]="fontSize+'px'">ITEM DESCRIPTION</th>
+                        <th class="text-start w-max py-2 text-gray-600 -tracking-tighter"
+                            [style.fontSize]="fontSize+'px'">PRICE</th>
+                        <th class="text-start w-max py-2 text-gray-600 -tracking-tighter"
+                            [style.fontSize]="fontSize+'px'">QUANTITY</th>
+                        <th class="text-start w-max py-2 text-gray-600 -tracking-tighter"
+                            [style.fontSize]="fontSize+'px'">SUBTOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="celldata py-2" [style.fontSize]="fontSize+'px'">
+                            <span>01</span>
+                        </td>
+                        <td class="celldata py-2" [style.fontSize]="fontSize+'px'">
+                            <span>Maria Anders</span>
+                        </td>
+                        <td class="celldata py-2" [style.fontSize]="fontSize+'px'">
+                            <span>$100.20</span>
+                        </td>
+                        <td class="celldata py-2" [style.fontSize]="fontSize+'px'">
+                            <span>1</span>
+                        </td>
+                        <td class="celldata py-2 text-end" [style.fontSize]="fontSize+'px'">
+                            <span>$100.20</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

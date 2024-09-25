@@ -1,0 +1,59 @@
+.layout {
+    min-height: 100vh;
+}
+
+.ngItem>label {
+    color: rgb(99, 99, 99);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+}
+
+.ngItem {
+    margin-bottom: 2rem;
+}
+
+::ng-deep nz-slider-track>div {
+    background: rgb(18, 91, 175) !important;
+    height: 10px !important;
+    border-radius: 50px !important;
+}
+
+::ng-deep nz-slider-handle>div {
+    background: rgb(18, 91, 175) !important;
+    margin-top: -2px !important;
+}
+
+::ng-deep nz-slider>div>div {
+    background: rgb(231, 231, 231) !important;
+    height: 10px !important;
+    border: 1px solid lightgray !important;
+    border-radius: 50px !important;
+}
+
+ul {
+    padding: 20px;
+
+}
+
+nz-sider {
+    overflow: auto;
+    height: 100%;
+    background: transparent;
+    position: fixed;
+    left: 0;
+}
+
+.right-layout {
+    margin-left: 210px;
+}
+
+nz-content {
+    margin: 24px 16px 0;
+    overflow: initial;
+}
+
+.inner-content {
+    padding: 24px; 
+}
