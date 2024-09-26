@@ -1,0 +1,90 @@
+[
+  {
+    "id": "f14f88d1-9077-42bd-8519-135956204f33",
+    "country": "United States",
+    "currencyName": "US Dollar",
+    "currencySymbol": "$",
+    "currencyNameShort": "USD",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "9ed29617-7848-4527-b132-d7ab82c5b06a",
+    "country": "United Kingdom",
+    "currencyName": "British Pound",
+    "currencySymbol": "£",
+    "currencyNameShort": "GBP",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "94ba3054-5e5a-4556-a203-5d00127e9f5e",
+    "country": "Japan",
+    "currencyName": "Japanese Yen",
+    "currencySymbol": "¥",
+    "currencyNameShort": "JPY",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "21274f5e-4817-47a5-a2e6-6849af147e17",
+    "country": "Australia",
+    "currencyName": "Australian Dollar",
+    "currencySymbol": "A$",
+    "currencyNameShort": "AUD",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "58cc8154-d724-401e-821d-aa7c063d3fef",
+    "country": "Canada",
+    "currencyName": "Canadian Dollar",
+    "currencySymbol": "C$",
+    "currencyNameShort": "CAD",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "f76c9d19-9a86-4c44-b4f4-e87d80439025",
+    "country": "China",
+    "currencyName": "Chinese Yuan",
+    "currencySymbol": "¥",
+    "currencyNameShort": "CNY",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "f69aaaad-b632-428c-a229-be3d09b11ab1",
+    "country": "India",
+    "currencyName": "Indian Rupee",
+    "currencySymbol": "₹",
+    "currencyNameShort": "INR",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "fa140827-3b50-4b59-8ba0-04a07445d6f1",
+    "country": "Turkey",
+    "currencyName": "Turkish Lira",
+    "currencySymbol": "₺",
+    "currencyNameShort": "TRY",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "0f6492d7-525f-4a76-9b07-5a4c3325fa81",
+    "country": "Saudi Arabia",
+    "currencyName": "Saudi Riyal",
+    "currencySymbol": "﷼",
+    "currencyNameShort": "SAR",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "b345cb39-9da9-4235-bffe-9dfebd59514b",
+    "country": "Pakistan",
+    "currencyName": "Pakistani Rupee",
+    "currencySymbol": "₨",
+    "currencyNameShort": "PKR",
+    "symbolPlacement": "before"
+  },
+  {
+    "id": "6335c8c1-2a89-4d33-85ab-50d05a1447dc",
+    "country": "Bangladesh",
+    "currencyName": "Bangladeshi Taka",
+    "currencySymbol": "৳",
+    "currencyNameShort": "BDT",
+    "symbolPlacement": "before"
+  }
+]

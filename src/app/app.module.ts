@@ -98,7 +98,8 @@ const ngZorroConfig: NzConfig = {
     NzPopoverModule,
     CanvasJSAngularChartsModule,
     NzTabsModule,
-    NzSliderModule,NzTableModule
+    NzSliderModule,
+    NzTableModule,
   ],
   providers: [
     { provide: NZ_CONFIG, useValue: ngZorroConfig },

@@ -1,21 +1,24 @@
 <nz-layout class="layout">
     <nz-sider class="relative overflow-hidden" [nzWidth]="210">
         <ul nz-menu nzMode="inline" class="overflow-y-auto h-full mb-52">
+
             <li class="ngItem" nz-menu-item>
                 <label for="">Template</label>
                 <nz-select class="mt-2 w-full py-1 rounded-sm" [(ngModel)]="template">
-                    <nz-option nzValue="minimal" nzLabel="Minimal"></nz-option>
-                    <nz-option nzValue="business" nzLabel="Business"></nz-option>
+                    <nz-option nzValue="Business" nzLabel="Business"></nz-option>
+                    <nz-option nzValue="Minimal" nzLabel="Minimal"></nz-option>
+                    <nz-option nzValue="Casual" nzLabel="Casual"></nz-option>
+                    <nz-option nzValue="Creative" nzLabel="Creative"></nz-option>
                 </nz-select>
             </li>
-            <li class="ngItem" nz-menu-item>
+            <!-- <li class="ngItem" nz-menu-item>
                 <label for="">Language</label>
                 <nz-select class="mt-2 w-full py-1 rounded-sm" [(ngModel)]="language">
                     <nz-option nzValue="english" nzLabel="English"></nz-option>
                     <nz-option nzValue="hindi" nzLabel="Hindi"></nz-option>
                     <nz-option nzValue="chinese" nzLabel="Chinese"></nz-option>
                 </nz-select>
-            </li>
+            </li> -->
             <li class="ngItem" nz-menu-item>
                 <label for="">Date Format</label>
                 <nz-select class="mt-2 w-full py-1 rounded-sm" [(ngModel)]="dateFormat">
@@ -26,9 +29,9 @@
             <li class="ngItem" nz-menu-item>
                 <label for="">Alignment</label>
                 <nz-select class="mt-2 w-full py-1 rounded-sm" [(ngModel)]="alignment">
-                    <nz-option nzValue="middle" nzLabel="Middle"></nz-option>
-                    <nz-option nzValue="top" nzLabel="Top"></nz-option>
-                    <nz-option nzValue="bottom" nzLabel="Bottom"></nz-option>
+                    <nz-option nzValue="flex-start" nzLabel="Top"></nz-option>
+                    <nz-option nzValue="center" nzLabel="Center"></nz-option>
+                    <nz-option nzValue="flex-end" nzLabel="Bottom"></nz-option>
                 </nz-select>
             </li>
             <li class="ngItem" nz-menu-item>
@@ -36,41 +39,48 @@
                 <nz-slider nzMin="8" nzMax="20" class="mt-2 w-full py-1 rounded-sm" nzTooltipVisible="never"
                     [(ngModel)]="fontSize"></nz-slider>
             </li>
-            <li class="ngItem" nz-menu-item>
+            <li *ngIf="hasAccessibility('Logo')" class="ngItem" nz-menu-item>
                 <label for="">Logo size</label>
                 <nz-slider class="mt-2 w-full py-1 rounded-sm" nzTooltipVisible="never"
                     [(ngModel)]="logoSize"></nz-slider>
             </li>
             <li class="ngItem" nz-menu-item>
                 <label for="">Toggle</label>
-                <nz-checkbox-group class="flex flex-col gap-y-2 mt-2 w-full py-1" [(ngModel)]="checkOptionsOne"
-                    (ngModelChange)="getAccesebilitis(checkOptionsOne)"></nz-checkbox-group>
+                <nz-checkbox-group class="flex flex-col gap-y-2 mt-2 w-full py-1" [(ngModel)]="accessibility"
+                    (ngModelChange)="getAccesebilitis(accessibility)"></nz-checkbox-group>
 
             </li>
-            <li class="ngItem" nz-menu-item>
-                <label for="">Accent Color</label>
+            <li *ngIf="hasAccessibility('Accent Color')" class="ngItem" nz-menu-item>
+                <label for="colorPicker">Accent Color</label>
                 <div class="w-full mt-2 flex flex-col shadow justify-between rounded-md bg-white h-56">
-                    <input [(ngModel)]="color" class="border-0 outline-none focus:border-0 rounded-md w-full h-full"
-                        type="color">
+
+                    <!-- Color Picker Input -->
+                    <input id="colorPicker" [(ngModel)]="color"
+                        class="border-0 outline-none focus:border-0 rounded-md w-full h-full" type="color"
+                        aria-label="Pick an accent color">
 
                     <div class="p-3">
+                        <!-- Predefined Color Options -->
                         <div class="grid grid-cols-4 gap-2 space-2 justify-between mb-2">
-                            <div *ngFor="let colorOption of ['#697689', '#DCE775', '#FF8A65', '#D9E3F0','#555555','#F47373']"
+                            <div *ngFor="let colorOption of ['#697689', '#DCE775', '#FF8A65', '#D9E3F0', '#555555', '#F47373']"
                                 (click)="color = colorOption" class="cursor-pointer w-6 h-6 rounded-[4px]"
                                 [style.backgroundColor]="colorOption">
                             </div>
                         </div>
-                        <input type="text" placeholder="#D9E3F0" [(ngModel)]="color"
-                            class="w-full border-2 border-gray-200 rounded px-3 bg-white my-2">
+
+                        <!-- Hex Color Input -->
+                        <input type="text" placeholder="{{color || '#D9E3F0'}}" [(ngModel)]="color"
+                            class="w-full border-2 border-gray-200 rounded px-3 bg-white my-2"
+                            aria-label="Enter hex color code">
                     </div>
                 </div>
             </li>
             <li class="ngItem h-36" nz-menu-item>
             </li>
-
             <li class="w-full  p-6 pr-10 bg-gray-100 h-min absolute bottom-0 right-0 border-t border-gray-300">
                 <div class=" w-full">
-                    <button class="uppercase text-xs py-2 my-2 rounded bg-primary block w-full text-white">Export
+                    <button (click)="savePdf()"
+                        class="uppercase text-xs py-2 my-2 rounded bg-primary block w-full text-white">Export
                         pdf</button>
 
                     <button
@@ -78,13 +88,18 @@
                         configs</button>
                 </div>
             </li>
-
         </ul>
     </nz-sider>
     <nz-layout class="right-layout">
         <nz-content>
             <div class="inner-content">
-                <app-previewer [fontSize]="fontSize" [imgWidth]="logoSize" />
+                <section
+                    class="shadow-md p-14 border border-gray-200 w-3/6 h-[1000px] min-w-[600px] mx-auto bg-white rounded min-h-screen">
+                    <div #pdfSection>
+                        <app-previewer [template]="template" [accessibility]="accessibility" [alignment]="alignment"
+                            [color]="color" [fontSize]="fontSize" [imgWidth]="logoSize" [dateFormat]="dateFormat" />
+                    </div>
+                </section>
             </div>
         </nz-content>
     </nz-layout>

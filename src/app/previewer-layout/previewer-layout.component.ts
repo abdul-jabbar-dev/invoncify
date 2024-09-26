@@ -1,10 +1,20 @@
-import { Component, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { format } from 'date-fns';
+
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 enum Alignment {
   Center = 'center',
-  Bottom = 'bottom',
-  Middle = 'middle',
+  Bottom = 'flex-end',
+  Top = 'flex-start',
 }
 
 enum Language {
@@ -17,14 +27,30 @@ enum Language {
   selector: 'app-previewer-layout',
   templateUrl: './previewer-layout.component.html',
   styleUrls: ['./previewer-layout.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlankLayoutComponent {
-  @Output() template: string = 'minimal';
+  @ViewChild('pdfSection', { static: false }) pdfSection!: ElementRef;
+  @Output() elementSent = new EventEmitter<ElementRef>();
+
+  constructor() {}
+
+  @Output() template: string = 'Business';
   @Output() fontSize: number = 12;
   @Output() logoSize: number = 40;
   @Output() color: string = '#697689';
   @Output() dateFormat: string = 'MM/dd/yyyy';
   @Output() language: Language = Language.English;
+  @Output() accessibility: {
+    label: string;
+    value: string;
+    checked?: boolean;
+  }[] = [
+    { label: 'Logo', value: 'Logo', checked: true },
+    { label: 'Symbol', value: 'Symbol', checked: true },
+    { label: 'Recipent', value: 'Recipent', checked: true },
+    { label: 'Accent Color', value: 'Accent Color', checked: true },
+  ];
 
   dateFormatOptions: { label: string; format: string }[] = [
     {
@@ -56,14 +82,16 @@ export class BlankLayoutComponent {
       format: 'MM/dd/yy',
     },
   ];
-  checkOptionsOne = [
-    { label: 'Logo', value: 'Logo', checked: true },
-    { label: 'Symbol', value: 'Symbol' },
-    { label: 'Recipent', value: 'Recipent' },
-    { label: 'Accent Color', value: 'Accent Color' },
-  ];
 
-  alignment: Alignment = Alignment.Middle;
+  @Output() alignment: Alignment = Alignment.Top;
+  hasAccessibility(label: string) {
+    const isIt = !!this.accessibility.find((pro) => pro.label === label)
+      ?.checked;
+    if (label === 'Accent Color' && !isIt) {
+      this.color = '#697689';
+    }
+    return isIt;
+  }
 
   getDate(): string {
     return format(new Date(Date.now()), this.dateFormat);
@@ -87,4 +115,29 @@ export class BlankLayoutComponent {
       console.error('Invalid color code:', newColor);
     }
   }
+  savePdf() {
+    html2canvas(this.pdfSection.nativeElement).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      const imgWidth = 190; // Set image width (in mm)
+      const pageHeight = pdf.internal.pageSize.height;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('download.pdf');
+    });
+  }
+ 
 }
