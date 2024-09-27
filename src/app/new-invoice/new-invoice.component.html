@@ -1,14 +1,15 @@
 <app-generic-layout>
-    <div header class="flex justify-between">
+    <header header class="flex justify-between">
 
         <p class="mb-0 font-bold">Create A New Invoice</p>
         <div>
             <button style="margin-right: 14px;" class=" btn bg-danger text-white ">Clear</button>
-            <button class="btn bg-secondary text-white">Primary Button</button>
+            <button (click)="saveInvoice()" class="btn bg-secondary text-white">Save & Preview</button>
         </div>
 
-    </div>
-    <div content>
+    </header>
+
+    <body content>
 
 
         <nz-collapse [nzExpandIconPosition]="'right'">
@@ -30,8 +31,8 @@
             <p class="title-text">RECIPIENT *</p>
 
             <nz-radio-group class="flex flex-col mt-3" [(ngModel)]="isNewContact" [ngModelOptions]="{standalone: true}">
-                <label nz-radio [nzValue]="true" class="pb-1">Create New</label>
-                <label nz-radio [nzValue]="false">Select</label>
+                <label (click)="createUser()" nz-radio [nzValue]="true" class="pb-1">Create New</label>
+                <label (click)="loadUsers()" nz-radio [nzValue]="false">Select</label>
             </nz-radio-group>
 
             <div class="py-3">
@@ -41,8 +42,8 @@
 
                 <nz-select *ngIf="!isNewContact" [(ngModel)]="selectedContact" class="w-full"
                     [ngModelOptions]="{standalone: true}">
-                    <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                    <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+
+                    <nz-option *ngFor="let user of users" [nzValue]="user.id" [nzLabel]="user.fullName"></nz-option>
                 </nz-select>
             </div>
 
@@ -54,6 +55,9 @@
             <app-prepayments />
         </div>
 
-
-    </div>
+        <div class="px-7 pb-3">
+            <p class="px-7 title-text-md py-3">RECIPIENT</p>
+            <app-new-invoice-options />
+        </div>
+    </body>
 </app-generic-layout>

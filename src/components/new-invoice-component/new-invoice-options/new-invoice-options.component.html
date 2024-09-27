@@ -1,0 +1,32 @@
+<div class="bg-slate-50 w-full p-6 rounded-md px-10">
+
+    <div class="flex gap-x-8 w-full">
+        <div class="w-full">
+            <label class="title-text" for="currency">CURRENCY</label>
+            <!-- need two way data binding -->
+            <nz-select id="currency" class="w-full py-[16px] rounded-md border-0 ring-0 outline-0">
+                <nz-option *ngFor="let currency of currencyList" [nzValue]="currency.id"
+                    [nzLabel]="currency.currencyName"></nz-option>
+            </nz-select>
+        </div>
+        <div class="w-full">
+            <label class="title-text" for="separator">SEPARATOR</label>
+             <!-- need two way data binding implement currency logic-->
+            <nz-select id="separator" class="w-full py-[16px] rounded-md border-0 ring-0 outline-0">
+                <nz-option *ngFor="let currency of currencyList" [nzValue]="currency.id"
+                    [nzLabel]="currency.currencyName"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+    <div class="flex gap-x-8 w-full">
+        <div class="w-full">
+                        <!-- need two way data binding implement currency logic-->
+            <label class="title-text" for="desicamfraction">DECIMAL FRACTION</label>
+            <nz-select id="desicamfraction" class="w-full py-[16px] rounded-md border-0 ring-0 outline-0">
+                <nz-option *ngFor="let currency of currencyList" [nzValue]="currency.id"
+                    [nzLabel]="currency.currencyName"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+
+</div>

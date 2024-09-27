@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -16,27 +16,27 @@ export class NewServiceComponent implements OnInit {
         };
       }
     | undefined;
-  submit() {
-    console.log(this.listOfData);
+
+  ngOnInit(): void {
+    this.listOfData = {
+      0: { description: '', price: NaN, quantity: NaN },
+    };
+    this.updateData();
   }
 
   drop(event: CdkDragDrop<any[]>): void {
     if (this.listOfData) {
       const itemsArray = Object.entries(this.listOfData);
       moveItemInArray(itemsArray, event.previousIndex, event.currentIndex);
-      let arr: any;
 
-      this.listOfData = itemsArray.map((i) => i[1]);
-      // this.listOfData = itemsArray.reduce((acc, [key, value]) => {
-      //   acc[Number(key)] = value; // Ensure keys are numeric
-      //   return acc;
-      // }, {} as { [index: number]: { description: string; price: number; quantity: number } });
+      this.listOfData = {};
+      itemsArray.forEach(([key, value], index) => {
+        if (this.listOfData) {
+          this.listOfData[index] = value;
+        }
+      });
     }
-  } 
-  ngOnInit(): void {
-    this.listOfData = {
-      0: { description: '', price: NaN, quantity: NaN },
-    };
+    this.updateData();
   }
 
   addField(): void {
@@ -44,11 +44,20 @@ export class NewServiceComponent implements OnInit {
       const id = Object.keys(this.listOfData).length;
       this.listOfData[id] = { description: '', price: NaN, quantity: NaN };
     }
+    this.updateData();
   }
 
   removeField(id: string): void {
     if (this.listOfData) {
       delete this.listOfData[Number(id)];
+      this.listOfData = { ...this.listOfData };
+    }
+    this.updateData();
+  }
+
+  updateData(): void {
+    if (this.listOfData) {
+      console.log(this.listOfData);
     }
   }
 }

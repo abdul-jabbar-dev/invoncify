@@ -1,6 +1,6 @@
-import { CreatePrepaymentComponent } from './../components/new-invoice-component/create-prepayment/create-prepayment.component';
+import { CreatePrepaymentComponent } from '../components/new-invoice-component/prepayments/create-prepayment/create-prepayment.component';
 import { PrepaymentsComponent } from './../components/new-invoice-component/prepayments/prepayments.component';
-import { DynamicInputComponent } from './../components/common/dynamic-input/dynamic-input.component';
+import { CreateServiceComponent } from '../components/new-invoice-component/new-service/create-service/create-service.component';
 import { NewServiceComponent } from './../components/new-invoice-component/new-service/new-service.component';
 import { CreateNewComponent } from './../components/new-invoice-component/create-new/create-new.component';
 import { SidebarComponent } from './../components/layout/sidebar/sidebar.component';
@@ -47,6 +47,7 @@ import { BlankLayoutComponent } from './previewer-layout/previewer-layout.compon
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NewInvoiceOptionsComponent } from 'src/components/new-invoice-component/new-invoice-options/new-invoice-options.component';
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -65,7 +66,7 @@ const ngZorroConfig: NzConfig = {
     GenericLayoutComponent,
     CreateNewComponent,
     NewServiceComponent,
-    DynamicInputComponent,
+    CreateServiceComponent,
     PrepaymentsComponent,
     CreatePrepaymentComponent,
     InvoiceCardComponent,
@@ -77,6 +78,7 @@ const ngZorroConfig: NzConfig = {
     ToggleOptionsComponent,
     PreviewerComponent,
     BlankLayoutComponent,
+    NewInvoiceOptionsComponent
   ],
   imports: [
     BrowserModule,

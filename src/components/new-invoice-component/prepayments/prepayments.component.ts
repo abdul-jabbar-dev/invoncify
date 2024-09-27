@@ -9,14 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrepaymentsComponent implements OnInit {
   listOfData:
-    | {
-        [index: number]: {
-          description: string;
-          price: number;
-          quantity: number;
-        };
-      }
-    | undefined;
+  | {
+      [index: number]: {
+        description: string;
+        price: number;
+      };
+    }
+  | undefined;
   submit() {
     console.log(this.listOfData);
   }
@@ -36,14 +35,14 @@ export class PrepaymentsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.listOfData = {
-      0: { description: '', price: NaN, quantity: NaN },
+      0: { description: '', price: NaN },
     };
   }
 
   addField(): void {
     if (this.listOfData) {
       const id = Object.keys(this.listOfData).length;
-      this.listOfData[id] = { description: '', price: NaN, quantity: NaN };
+      this.listOfData[id] = { description: '', price: NaN};
     }
   }
 
@@ -53,4 +52,3 @@ export class PrepaymentsComponent implements OnInit {
     }
   }
 }
-

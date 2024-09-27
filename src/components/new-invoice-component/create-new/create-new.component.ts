@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-new',
@@ -6,12 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-new.component.css'],
 })
 export class CreateNewComponent {
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-  fullName: any;
-  company: any;
-  email: any;
-  phoneNumber: any;
-  address: any;
+  constructor() {}
+  newContact = new FormGroup({
+    fullName: new FormControl<string>('', Validators.required),
+    company: new FormControl<string>('', Validators.required),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
+    phoneNumber: new FormControl<string>('', Validators.required),
+    address: new FormControl<string>('', Validators.required),
+  });
 }

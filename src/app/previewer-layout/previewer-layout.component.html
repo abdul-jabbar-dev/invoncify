@@ -54,21 +54,18 @@
                 <label for="colorPicker">Accent Color</label>
                 <div class="w-full mt-2 flex flex-col shadow justify-between rounded-md bg-white h-56">
 
-                    <!-- Color Picker Input -->
                     <input id="colorPicker" [(ngModel)]="color"
                         class="border-0 outline-none focus:border-0 rounded-md w-full h-full" type="color"
                         aria-label="Pick an accent color">
 
                     <div class="p-3">
-                        <!-- Predefined Color Options -->
+
                         <div class="grid grid-cols-4 gap-2 space-2 justify-between mb-2">
                             <div *ngFor="let colorOption of ['#697689', '#DCE775', '#FF8A65', '#D9E3F0', '#555555', '#F47373']"
                                 (click)="color = colorOption" class="cursor-pointer w-6 h-6 rounded-[4px]"
                                 [style.backgroundColor]="colorOption">
                             </div>
                         </div>
-
-                        <!-- Hex Color Input -->
                         <input type="text" placeholder="{{color || '#D9E3F0'}}" [(ngModel)]="color"
                             class="w-full border-2 border-gray-200 rounded px-3 bg-white my-2"
                             aria-label="Enter hex color code">

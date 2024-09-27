@@ -7,6 +7,10 @@
    font-family: 'Montserrat';
 }
 
+.error-text {
+   @apply text-red-600 text-[10px] mt-0 mb-2;
+}
+
 .btn {
    padding: 2px 10px;
    cursor: pointer;
@@ -29,10 +33,11 @@
 }
 
 .form-settings {
-   font-size: .8rem !important; 
+   font-size: .8rem !important;
    color: rgb(100, 100, 100) !important;
 
 }
+
 .title-text-md {
    font-size: 13px !important;
    font-weight: 600 !important;

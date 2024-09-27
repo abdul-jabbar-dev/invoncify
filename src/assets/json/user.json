@@ -1,0 +1,51 @@
+[
+    {
+      "id": "e8b8a1f6-d2e4-4a6d-92b4-2f68d5b10d25",
+      "fullName": "John Doe",
+      "company": "Tech Solutions",
+      "email": "johndoe@example.com",
+      "phoneNumber": "+1-555-1234",
+      "address": "1234 Elm St, Springfield, IL"
+    },
+    {
+      "id": "3b1d29e2-18b3-4703-b2fa-44a6818b42e5",
+      "fullName": "Jane Smith",
+      "company": "Creative Studio",
+      "email": "janesmith@example.com",
+      "phoneNumber": "+1-555-5678",
+      "address": "5678 Oak St, Metropolis, NY"
+    },
+    {
+      "id": "6c203f79-8798-49b6-96b0-90e1f1b0f56f",
+      "fullName": "Michael Johnson",
+      "company": "Innovative Labs",
+      "email": "mjohnson@example.com",
+      "phoneNumber": "+1-555-9101",
+      "address": "9101 Maple St, Gotham, NJ"
+    },
+    {
+      "id": "9a7f56b3-7e13-4c8f-a062-bf610d7f3c7b",
+      "fullName": "Emily Davis",
+      "company": "Marketing Pro",
+      "email": "edavis@example.com",
+      "phoneNumber": "+1-555-1122",
+      "address": "1122 Cedar St, Star City, CA"
+    },
+    {
+      "id": "d7fa7f8b-6812-4d89-b34e-ef58299ed69e",
+      "fullName": "Robert Brown",
+      "company": "Enterprise Corp",
+      "email": "rbrown@example.com",
+      "phoneNumber": "+1-555-3142",
+      "address": "3142 Birch St, Central City, TX"
+    },
+    {
+      "id": "b3cf5ab9-35fb-4dd8-99b4-4b7f0c8195fc",
+      "fullName": "Sarah Wilson",
+      "company": "Tech Innovators",
+      "email": "swilson@example.com",
+      "phoneNumber": "+1-555-6532",
+      "address": "6532 Pine St, Coast City, FL"
+    }
+  ]
+  
