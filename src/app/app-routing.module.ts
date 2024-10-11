@@ -7,11 +7,19 @@ import { SettingsComponent } from './settings/settings.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { BlankLayoutComponent } from './previewer-layout/previewer-layout.component';
 import { LayoutGuard } from './layout.guard';
+import { AuthGuardGuard } from './auth-guard.guard';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  { path: '', component: NewInvoiceComponent },
+  { path: '', component: NewInvoiceComponent, canActivate: [AuthGuardGuard] },
   { path: 'all-invoices', component: ListInvoiceComponent },
   { path: 'all-contacts', component: ListContactComponent },
+  {
+    path: 'login',
+    component: AuthComponent,
+    canActivate: [LayoutGuard],
+    data: { skipLayout: true },
+  },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'settings', component: SettingsComponent },
   {

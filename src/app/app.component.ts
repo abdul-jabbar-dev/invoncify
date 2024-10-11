@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.skipLayout = event.url.includes('/previewer'); 
+        this.skipLayout = event.url.includes('/previewer')||event.url.includes('/login'); 
       }
     });
   }

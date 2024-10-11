@@ -48,6 +48,7 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NewInvoiceOptionsComponent } from 'src/components/new-invoice-component/new-invoice-options/new-invoice-options.component';
+import { AuthComponent } from './auth/auth.component'; 
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -78,9 +79,11 @@ const ngZorroConfig: NzConfig = {
     ToggleOptionsComponent,
     PreviewerComponent,
     BlankLayoutComponent,
-    NewInvoiceOptionsComponent
+    NewInvoiceOptionsComponent,
+    AuthComponent,
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     FormsModule,
