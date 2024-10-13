@@ -12,16 +12,32 @@ import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', component: NewInvoiceComponent, canActivate: [AuthGuardGuard] },
-  { path: 'all-invoices', component: ListInvoiceComponent },
-  { path: 'all-contacts', component: ListContactComponent },
+  {
+    path: 'all-invoices',
+    component: ListInvoiceComponent,
+    canActivate: [AuthGuardGuard],
+  },
+  {
+    path: 'all-contacts',
+    component: ListContactComponent,
+    canActivate: [AuthGuardGuard],
+  },
   {
     path: 'login',
     component: AuthComponent,
     canActivate: [LayoutGuard],
     data: { skipLayout: true },
   },
-  { path: 'statistics', component: StatisticsComponent },
-  { path: 'settings', component: SettingsComponent },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    canActivate: [AuthGuardGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuardGuard],
+  },
   {
     path: 'previewer/:id',
     component: BlankLayoutComponent,

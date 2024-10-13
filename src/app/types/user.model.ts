@@ -1,11 +1,11 @@
 
 export interface TUser {
   id?: string;
-  fullName: string;
+  displayName: string;
   company?: string;
   email: string;
   phoneNumber: string;
-  address: string;
+  address?: string;
   website?: string;
   logo?: string;
 }

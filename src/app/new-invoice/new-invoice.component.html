@@ -43,7 +43,7 @@
                 <nz-select *ngIf="!isNewContact" [(ngModel)]="selectedContact" class="w-full"
                     [ngModelOptions]="{standalone: true}">
 
-                    <nz-option *ngFor="let user of users" [nzValue]="user.id" [nzLabel]="user.fullName"></nz-option>
+                    <nz-option *ngFor="let user of users" [nzValue]="user.id" [nzLabel]="user.displayName"></nz-option>
                 </nz-select>
             </div>
 
