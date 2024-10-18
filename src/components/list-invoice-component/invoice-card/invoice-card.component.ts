@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './invoice-card.component.html',
   styleUrls: ['./invoice-card.component.css'],
 })
-export class InvoiceCardComponent implements OnChanges {
+export class InvoiceCardComponent {
   @Input() item!: {
     id: string;
     status: string;
@@ -22,9 +22,7 @@ export class InvoiceCardComponent implements OnChanges {
   }
   
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.item);
-  }
+ 
   visible: boolean = false;
 
   clickMe(): void {

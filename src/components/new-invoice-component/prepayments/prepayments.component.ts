@@ -9,16 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrepaymentsComponent implements OnInit {
   listOfData:
-  | {
-      [index: number]: {
-        description: string;
-        price: number;
-      };
-    }
-  | undefined;
-  submit() {
-    console.log(this.listOfData);
-  }
+    | {
+        [index: number]: {
+          description: string;
+          price: number;
+        };
+      }
+    | undefined;
 
   drop(event: CdkDragDrop<any[]>): void {
     if (this.listOfData) {
@@ -33,16 +30,14 @@ export class PrepaymentsComponent implements OnInit {
       // }, {} as { [index: number]: { description: string; price: number; quantity: number } });
     }
   }
-  ngOnInit(): void {
-    this.listOfData = {
-      0: { description: '', price: NaN },
-    };
-  }
+  ngOnInit(): void {}
 
-  addField(): void {
+  addField(): void { 
     if (this.listOfData) {
       const id = Object.keys(this.listOfData).length;
-      this.listOfData[id] = { description: '', price: NaN};
+      this.listOfData[id] = { description: '', price: NaN };
+    } else {
+      this.listOfData = { 0: { description: '', price: NaN } };
     }
   }
 

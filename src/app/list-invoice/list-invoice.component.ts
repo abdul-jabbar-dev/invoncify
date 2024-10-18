@@ -1,20 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { InvoiceService } from '../services/invoice.service';
 
 @Component({
   selector: 'app-list-invoice',
   templateUrl: './list-invoice.component.html',
   styleUrls: ['./list-invoice.component.css'],
 })
-export class ListInvoiceComponent {
+export class ListInvoiceComponent implements OnInit {
+  invoices = [];
   filterBtn = 'PENDING';
-  statusDef: {
-    id: string;
-    status: string;
-    color: string;
-    bg: string;
-    border: string;
-    icon: string;
-  }[] = [
+
+  statusDef = [
     {
       id: '55d40-4sfsf-5sf50-4sf5a',
       status: 'PENDING',
@@ -43,9 +39,31 @@ export class ListInvoiceComponent {
       id: '55d40-fh45g-5sfd0-4sf5a',
       status: 'PAID',
       color: 'text-green-500',
-      bg: 'text-green-500',
+      bg: 'bg-green-500',
       border: 'border-green-500',
       icon: 'check',
     },
   ];
+
+  constructor(protected invoiceRequest: InvoiceService) {}
+
+  ngOnInit(): void {
+    this.loadInvoice();
+  }
+
+  loadInvoice() {
+    this.invoiceRequest.getMyInvoices().subscribe((res) => {
+      this.invoices = res.map((ins: any) => {
+        const statusCombination = this.statusDef.find(
+          (c) => c.status === ins.status
+        );
+        return {
+          ...ins,
+          statusCombination,
+        };
+      });
+
+      console.log(this.invoices);
+    });
+  }
 }

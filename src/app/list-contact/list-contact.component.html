@@ -14,19 +14,30 @@
                 <div class="w-min">action</div>
             </div>
 
-            <div class="border-t border-gray-300 text-gray-500 px-6 py-3 flex">
-                <div class="w-full font-semibold"><span (click)="clipToContante($event)" [id]="1+'contant'"
-                        class="border-b-2 border-dotted border-gray-900">contact</span></div>
-                <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'email'"
-                        class="border-b-2 border-dotted border-gray-900">email</span>
-                </div>
-                <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'phone'"
-                        class="border-b-2 border-dotted border-gray-900">phone</span>
-                </div>
-                <div class="w-min flex gap-x-2">
-                    <span nz-icon nzType="edit" nzTheme="fill"></span>
-                    <span class="text-blue-600" nz-icon nzType="plus" nzTheme="outline"></span>
-                    <span class="text-red-400" nz-icon nzType="close-circle" nzTheme="fill"></span>
+            <div *ngIf="pendingUser">
+                loading
+            </div>
+
+            <div *ngIf="!pendingUser&&users.length===0">
+                Empty
+            </div>
+            <div *ngIf="!pendingUser&&users.length>0">
+
+                <div *ngFor="let user of users" class="border-t text-xs border-gray-300 text-gray-500 px-6 py-3 flex">
+                    <div class="w-full font-semibold"><span (click)="clipToContante($event)" [id]="1+'contant'"
+                            class="border-b-2 border-dotted border-gray-500">{{user.name}}</span></div>
+                    <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'email'"
+                            class="border-b-2 border-dotted border-gray-500">{{user.email}}</span>
+                    </div>
+                    <div class="w-full"><span (click)="clipToContante($event)" [id]="1+'phone'"
+                            class="border-b-2 border-dotted border-gray-500">{{user.phoneNumber}}</span>
+                    </div>
+                    <div class="w-min flex gap-x-2">
+                        <span nz-icon nzType="edit" nzTheme="fill"></span>
+                        <span class="text-blue-600" nz-icon nzType="plus" nzTheme="outline"></span>
+                        <span class="text-red-400" (click)="deleteUser(user.id!)" nz-icon nzType="close-circle"
+                            nzTheme="fill"></span>
+                    </div>
                 </div>
             </div>
 

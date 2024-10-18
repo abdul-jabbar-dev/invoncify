@@ -1,7 +1,7 @@
 
 export interface TUser {
   id?: string;
-  displayName: string;
+  name: string;
   company?: string;
   email: string;
   phoneNumber: string;

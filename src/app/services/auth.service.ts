@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
   onAuthStateChanged,
   User,
+  getIdToken,
   signOut,
 } from 'firebase/auth';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { app as fireApp } from 'src/conf/firebase';
+import { RequestService } from './request.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,25 +27,51 @@ export class AuthService {
   public isAuthInitialized$: Observable<boolean> =
     this.authInitializedSubject.asObservable();
 
-  constructor(protected route: Router) {
+  constructor(protected route: Router, private http: RequestService) {
     this.listenToAuthState();
   }
 
-  // Listen to Firebase auth state and emit when initialized
+  private async setNewToken(user: User) {
+    const token = await getIdToken(user!);
+    localStorage.setItem('authToken', token);
+    return token;
+  }
+
   private listenToAuthState() {
     const auth = getAuth(fireApp);
-    onAuthStateChanged(auth, (user) => {
-      this.userSubject.next(user ? user : null); // Update user observable
-      this.authInitializedSubject.next(true); // Firebase auth is initialized
+    onAuthStateChanged(auth, async (user) => {
+      this.setNewToken(user!);
+      this.userSubject.next(user ? user : null);
+      this.authInitializedSubject.next(true);
     });
   }
 
   // Login with Google
-  async login(): Promise<void> {
+  async login() {
     const provider = new GoogleAuthProvider();
     const auth = getAuth(fireApp);
     const { user } = await signInWithPopup(auth, provider);
-    this.userSubject.next(user); // Update user after successful login
+    if (user) {
+      const { displayName, uid, phoneNumber, photoURL, email } = user;
+      this.setNewToken(user!);
+      this.http
+        .post('/client/new-user', {
+          name: displayName,
+          id: uid,
+          phoneNumber,
+          photoURL,
+          email,
+        })
+        .subscribe({
+          next: (response) => {
+            console.log('Response received:', response);
+          },
+          error: (err) => {
+            console.error('Error occurred:', err);
+          },
+        });
+      this.userSubject.next(user);
+    }
   }
 
   // Logout method
@@ -52,7 +79,7 @@ export class AuthService {
     const auth = getAuth(fireApp);
     await signOut(auth);
     this.route.navigateByUrl('/login');
-    this.userSubject.next(null); // Clear user on logout
+    this.userSubject.next(null);
   }
 
   // Check if the user is logged in

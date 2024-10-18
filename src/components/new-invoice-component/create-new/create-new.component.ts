@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreateNewComponent {
   constructor() {}
   newContact = new FormGroup({
-    displayName: new FormControl<string>('', Validators.required),
+    name: new FormControl<string>('', Validators.required),
     company: new FormControl<string>('', Validators.required),
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl<string>('', Validators.required),

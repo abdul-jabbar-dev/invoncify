@@ -12,6 +12,12 @@
       "architect": {
         "build": {
           "allowedCommonJsDependencies": [
+            "core-js/modules/es.array.index-of.js",
+            "core-js/modules/es.array.iterator.js",
+            "core-js/modules/es.promise.js",
+            "raf",
+            "rgbcolor",
+            "@canvasjs/angular-charts",
             "@canvasjs/angular-charts"
           ],
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,7 +28,7 @@
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",   
+            "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets",

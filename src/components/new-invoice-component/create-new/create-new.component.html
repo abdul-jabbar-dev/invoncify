@@ -2,10 +2,10 @@
     <div class="bg-slate-50 w-full p-6 rounded-md">
         <div class="flex gap-x-8 w-full">
             <div class="w-full">
-                <label class="title-text" for="displayName">FULL NAME</label>
+                <label class="title-text" for="name">FULL NAME</label>
                 <input class="my-3 focus:outline-0 px-3 py-2 rounded-md border-[0.2px] border-gray-200 bg-white w-full"
-                    nz-input   placeholder="" formControlName="displayName" id="displayName" type="text" />
-                <div *ngIf="newContact.get('displayName')?.invalid && newContact.get('displayName')?.touched"
+                    nz-input   placeholder="" formControlName="name" id="name" type="text" />
+                <div *ngIf="newContact.get('name')?.invalid && newContact.get('name')?.touched"
                     class="error-text">
                     Full name is required.
                 </div>

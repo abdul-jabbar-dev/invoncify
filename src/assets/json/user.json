@@ -1,7 +1,7 @@
 [
   {
     "id": "e8b8a1f6-d2e4-4a6d-92b4-2f68d5b10d25",
-    "displayName": "John Doe",
+    "name": "John Doe",
     "company": "Tech Solutions",
     "email": "johndoe@example.com",
     "phoneNumber": "+1-555-1234",
@@ -10,7 +10,7 @@
   },
   {
     "id": "3b1d29e2-18b3-4703-b2fa-44a6818b42e5",
-    "displayName": "Jane Smith",
+    "name": "Jane Smith",
     "company": "Creative Studio",
     "email": "janesmith@example.com",
     "phoneNumber": "+1-555-5678",
@@ -19,7 +19,7 @@
   },
   {
     "id": "6c203f79-8798-49b6-96b0-90e1f1b0f56f",
-    "displayName": "Michael Johnson",
+    "name": "Michael Johnson",
     "company": "Innovative Labs",
     "email": "mjohnson@example.com",
     "phoneNumber": "+1-555-9101",
@@ -28,7 +28,7 @@
   },
   {
     "id": "9a7f56b3-7e13-4c8f-a062-bf610d7f3c7b",
-    "displayName": "Emily Davis",
+    "name": "Emily Davis",
     "company": "Marketing Pro",
     "email": "edavis@example.com",
     "phoneNumber": "+1-555-1122",
@@ -37,7 +37,7 @@
   },
   {
     "id": "d7fa7f8b-6812-4d89-b34e-ef58299ed69e",
-    "displayName": "Robert Brown",
+    "name": "Robert Brown",
     "company": "Enterprise Corp",
     "email": "rbrown@example.com",
     "phoneNumber": "+1-555-3142",
@@ -46,7 +46,7 @@
   },
   {
     "id": "b3cf5ab9-35fb-4dd8-99b4-4b7f0c8195fc",
-    "displayName": "Sarah Wilson",
+    "name": "Sarah Wilson",
     "company": "Tech Innovators",
     "email": "swilson@example.com",
     "phoneNumber": "+1-555-6532",

@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ProfileSettingComponent {
   profileInfo = new FormGroup({
-    displayName: new FormControl<string>(''),
+    name: new FormControl<string>(''),
     company: new FormControl<string>(''),
     email: new FormControl<string>(''),
     phoneNumber: new FormControl<string>(''),
@@ -23,6 +23,6 @@ export class ProfileSettingComponent {
   }
 
   clearImage() {
-    this.profileInfo.get('photoURL')?.setValue(''); // Clear the image URL
+    this.profileInfo.get('photoURL')?.setValue(''); 
   }
 }

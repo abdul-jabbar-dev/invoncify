@@ -3,14 +3,13 @@
 
         <p class="mb-0 font-bold">Create A New Invoice</p>
         <div>
-            <button style="margin-right: 14px;" class=" btn bg-danger text-white ">Clear</button>
-            <button (click)="saveInvoice()" class="btn bg-secondary text-white">Save & Preview</button>
+            <button style="margin-right: 14px;" class=" btn bg-danger text-white uppercase ">Clear</button>
+            <button (click)="saveInvoice()" class="btn bg-secondary text-white uppercase">Save & Preview</button>
         </div>
 
     </header>
 
     <body content>
-
 
         <nz-collapse [nzExpandIconPosition]="'right'">
             <nz-collapse-panel [nzHeader]="'FORM SETTINGS'" [nzActive]="false">
@@ -28,7 +27,7 @@
 
 
         <div class="px-7 border-t py-3">
-            <p class="title-text">RECIPIENT *</p>
+            <p class="title-text py-3">RECIPIENT *</p>
 
             <nz-radio-group class="flex flex-col mt-3" [(ngModel)]="isNewContact" [ngModelOptions]="{standalone: true}">
                 <label (click)="createUser()" nz-radio [nzValue]="true" class="pb-1">Create New</label>
@@ -43,7 +42,7 @@
                 <nz-select *ngIf="!isNewContact" [(ngModel)]="selectedContact" class="w-full"
                     [ngModelOptions]="{standalone: true}">
 
-                    <nz-option *ngFor="let user of users" [nzValue]="user.id" [nzLabel]="user.displayName"></nz-option>
+                    <nz-option *ngFor="let user of users" [nzValue]="user.id" [nzLabel]="user.name"></nz-option>
                 </nz-select>
             </div>
 
@@ -55,9 +54,9 @@
             <app-prepayments />
         </div>
 
-        <div class="px-7 pb-3">
+        <!-- <div class="px-7 pb-3">
             <p class="px-7 title-text-md py-3">RECIPIENT</p>
-            <app-new-invoice-options />
-        </div>
+            <app-new-tions />
+        </div> -->
     </body>
 </app-generic-layout>
