@@ -90,13 +90,23 @@
     <nz-layout class="right-layout">
         <nz-content>
             <div class="inner-content">
-                <section
-                    class="shadow-md p-14 border border-gray-200 w-3/6 h-[1000px] min-w-[600px] mx-auto bg-white rounded min-h-screen">
+                <section class="shadow-md p-14 border border-gray-200 w-3/6 h-[1000px] min-w-[600px] mx-auto bg-white rounded min-h-screen">
                     <div #pdfSection>
-                        <app-previewer [template]="template" [accessibility]="accessibility" [alignment]="alignment"
-                            [color]="color" [fontSize]="fontSize" [imgWidth]="logoSize" [dateFormat]="dateFormat" />
+                        <app-previewer 
+                            *ngIf="invoice; else loading" 
+                            [invoice]="invoice" 
+                            [template]="template" 
+                            [accessibility]="accessibility" 
+                            [alignment]="alignment"
+                            [color]="color" 
+                            [fontSize]="fontSize" 
+                            [imgWidth]="logoSize" 
+                            [dateFormat]="dateFormat">
+                        </app-previewer>
+                        <ng-template #loading>Loading...</ng-template>
                     </div>
                 </section>
+                
             </div>
         </nz-content>
     </nz-layout>

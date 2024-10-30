@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from '../services/invoice.service';
+import { IInvoiceStatusCombination } from '../types/invoice.model';
 
 @Component({
   selector: 'app-list-invoice',
@@ -10,7 +11,7 @@ export class ListInvoiceComponent implements OnInit {
   invoices = [];
   filterBtn = 'PENDING';
 
-  statusDef = [
+  statusDef: IInvoiceStatusCombination[] = [
     {
       id: '55d40-4sfsf-5sf50-4sf5a',
       status: 'PENDING',
@@ -61,9 +62,7 @@ export class ListInvoiceComponent implements OnInit {
           ...ins,
           statusCombination,
         };
-      });
-
-      console.log(this.invoices);
+      }); 
     });
   }
 }

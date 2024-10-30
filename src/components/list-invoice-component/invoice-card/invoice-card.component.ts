@@ -1,28 +1,25 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { RInvoice, TInvoiceProducts } from 'src/app/types/invoice.model';
 
 @Component({
   selector: 'app-invoice-card',
   templateUrl: './invoice-card.component.html',
   styleUrls: ['./invoice-card.component.css'],
 })
-export class InvoiceCardComponent {
-  @Input() item!: {
-    id: string;
-    status: string;
-    color: string;
-    bg: string;
-    border: string;
-    icon: string;
-  };
-  constructor(public router: Router) {}
+export class InvoiceCardComponent implements OnChanges {
+  @Input() item!: RInvoice;
+  constructor(
+    public router: Router,
+  ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   goToInvoice(arg0: string) {
     window.open('/previewer/' + arg0, '_blank');
   }
-  
 
- 
   visible: boolean = false;
 
   clickMe(): void {
@@ -44,5 +41,12 @@ export class InvoiceCardComponent {
           console.error('Error copying content: ', err);
         });
     }
+  }
+  getTotalValue(items: TInvoiceProducts[]) {
+    const total = items.reduce(
+      (sum, product) => sum + product.price * product.quantity,
+      0
+    );
+    return total;
   }
 }

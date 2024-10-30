@@ -1,130 +1,122 @@
-
-    <div class="w-full h-full flex flex-col gap-y-4 ">
-        <ng-container [ngSwitch]="template">
-            <ng-container *ngSwitchCase="'Business'">
-                <ng-container *ngTemplateOutlet="busnessTemplate"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="'Casual'">
-                <ng-container *ngTemplateOutlet="casualTemplate"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="'Minimal'">
-                <ng-container *ngTemplateOutlet="minimalTemplate"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchDefault>
-                <ng-container *ngTemplateOutlet="otherTemplate"></ng-container>
-            </ng-container>
+<div class="w-full h-full flex flex-col gap-y-4" *ngIf="!isLoading||!invoice;else loading">
+    <ng-container [ngSwitch]="template">
+        <ng-container *ngSwitchCase="'Business'">
+            <ng-container *ngTemplateOutlet="businessTemplate"></ng-container>
         </ng-container>
-    </div>
+        <ng-container *ngSwitchCase="'Casual'">
+            <ng-container *ngTemplateOutlet="casualTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Minimal'">
+            <ng-container *ngTemplateOutlet="minimalTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="otherTemplate"></ng-container>
+        </ng-container>
+    </ng-container>
+</div>
 
+<ng-template #notFound>
+    <div class="text-gray-500 font-semibold">Not found</div>
+</ng-template>
+<ng-template #loading>
+    <div class="text-gray-500 font-semibold">Loading</div>
+</ng-template>
 
-<ng-template #busnessTemplate>
-    <div class="w-full h-min
-    ">
+<ng-template #businessTemplate>
+    <div class="w-full h-min">
         <img *ngIf="hasAccessibility('Logo')" [width]="imgWidth * 3"
             src="https://img.alicdn.com/imgextra/i1/O1CN01RSfkps1J0vtVaKr0U_!!6000000000967-49-tps-1920-1920.webp">
         <div class="flex justify-between items-start">
             <div>
-                <div>
-                    <h2 class="text-lg font-semibold uppercase py-2" [style.fontSize]="(fontSize+4)+'px'">Abdul
-                        Jabbar
-                    </h2>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Invocify</p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Colombia</p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">abduljabbar&#64;gmail.com
-                    </p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">+01733941913</p>
-                </div>
+                <h2 class="text-lg font-semibold uppercase py-2" [style.fontSize]="(fontSize+4)+'px'">
+                    My Company name
+                </h2>
+                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Invocify</p>
+                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Colombia</p>
+                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">abduljabbar&#64;gmail.com</p>
+                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">+01733941913</p>
 
                 <div *ngIf="hasAccessibility('Recipent')" class="py-1">
-                    <h2 [style.fontSize]="(fontSize+1)+'px'" class="uppercase mb-2 mt-4 font-semibold">Billed to
-                    </h2>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Invocify</p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Colombia</p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">abduljabbar&#64;gmail.com
+                    <h2 [style.fontSize]="(fontSize+1)+'px'" class="uppercase mb-2 mt-4 font-semibold">Billed to</h2>
+                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_name}}</p>
+                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_email}}</p>
+                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_address}}</p>
+                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_phoneNumber}}
                     </p>
-                    <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">+01733941913</p>
                 </div>
             </div>
             <div class="text-right">
                 <h1 class="text-3xl uppercase text-slate-400 mb-2" [style.color]="color"
                     [style.fontSize]="((fontSize)+20)+'px'">Citation</h1>
-
-                <p class="text-gray-700 pb-1 font-semibold" [style.fontSize]="fontSize+'px'">#145224</p>
-                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Created: {{formetedDate()}}
-                </p>
+                <p class="text-gray-700 pb-1 font-semibold" [style.fontSize]="fontSize+'px'">#{{invoice.invoice_id}}</p>
+                <p class="text-gray-400 pb-1" [style.fontSize]="(fontSize-1)+'px'">Created: {{formattedDate()}}</p>
             </div>
         </div>
     </div>
+
     <div class="h-full w-full flex" [style.alignItems]="alignment">
-        <table class=" w-full h-min" [cellPadding]="'10px'">
-            <thead class="custom-thead border-b-4 " [style.borderColor]="color">
+        <table class="w-full h-min" [cellPadding]="'10px'">
+            <thead class="custom-thead border-b-4" [style.borderColor]="color">
                 <tr>
-                    <th class="text-start w-min py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
-                        NO</th>
-                    <th class="text-start w-full py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
+                    <th class="text-start py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">NO</th>
+                    <th class="text-start py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
                         ITEM DESCRIPTION</th>
-                    <th class="text-start w-max py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
+                    <th class="text-start py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
                         PRICE</th>
-                    <th class="text-start w-max py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
+                    <th class="text-start py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">
                         QUANTITY</th>
-                    <th style="text-align:right" class="text-start w-max py-2 text-gray-500 -tracking-tighter"
-                        [style.fontSize]="fontSize+'px'">SUBTOTAL</th>
+                    <th class="text-end py-2 text-gray-500 -tracking-tighter" [style.fontSize]="fontSize+'px'">SUBTOTAL
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="celldata py-2">
-                        <span [style.fontSize]="fontSize+'px'">01</span>
+                <tr *ngFor="let product of invoice.products; index as i">
+                    <td class="py-2">
+                        <span [style.fontSize]="fontSize+'px'">{{i+1}}</span>
                     </td>
-                    <td class="celldata py-2">
-                        <span [style.fontSize]="fontSize+'px'">Maria Anders</span>
+                    <td class="py-2">
+                        <span [style.fontSize]="fontSize+'px'">{{product.description}}</span>
                     </td>
-                    <td class="celldata py-2">
-                        <p class=" px-2" [style.fontSize]="fontSize+'px'">{{getCurrency('100.20')}}</p>
+                    <td class="py-2 " style="white-space: nowrap;">
+                        <p class="px-2" [style.fontSize]="fontSize+'px'">{{product.price |
+                            money:invoice.meta.currencySettings}}</p>
                     </td>
-                    <td class="celldata py-2  text-center">
-                        <span [style.fontSize]="fontSize+'px'">1</span>
+                    <td class="py-2 text-center">
+                        <span [style.fontSize]="fontSize+'px'">{{product.quantity}}</span>
                     </td>
-                    <td class="celldata py-2 text-end">
-                        <p class="  px-2" [style.fontSize]="(fontSize)+'px'">{{getCurrency('100.20')}}</p>
+                    <td class="py-2 text-end" style="white-space: nowrap;">
+                        <p class="px-2" [style.fontSize]="fontSize+'px'">{{product.price |
+                            money:invoice.meta.currencySettings}}</p>
                     </td>
                 </tr>
-
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" class=" py-2" style="border: 0;">
+                    <td colspan="3" style="border: 0;"></td>
+                    <td [style.borderColor]="color"
+                        class="min-w-fit text-gray-600 uppercase text-md font-semibold py-2">
+                        <span [style.fontSize]="fontSize+'px'">Subtotal</span>
                     </td>
-
-                    <td colspan="2" [style.borderColor]="color"
-                        class="text-start w-full py-2 border-b-4 text-gray-600  uppercase text-md font-semibold  ">
-                        <span [style.fontSize]="(fontSize)+'px'">Subtotal</span>
-                    </td>
-
-                    <td [style.borderColor]="color" class="py-2 border-b-4 text-end text-gray-800 ">
-                        <p [style.fontSize]="fontSize+'px'">{{getCurrency('100.00')}}</p>
+                    <td [style.borderColor]="color" class="text-end text-gray-800 py-2">
+                        <p [style.fontSize]="fontSize+'px'">{{subtotal | money:invoice.meta.currencySettings}}</p>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="2" class=" py-2" style="border: 0;">
+                    <td colspan="3" style="border: 0;"></td>
+                    <td class="text-gray-700 text-xl font-semibold uppercase py-2">
+                        <span [style.fontSize]="((fontSize)+6)+'px'">Total</span>
                     </td>
-
-                    <td colspan="2" class="text-start w-full py-2 -tracking-tighter uppercase text-md font-semibold  ">
-                        <span [style.fontSize]="((fontSize)+6)+'px'" class="text-xl text-gray-700 ">Total</span>
-                    </td>
-
-                    <td class="py-2 text-end ">
-                        <p [style.fontSize]="((fontSize)+6)+'px'" class="text-xl text-green-500 flex ">
-                            {{getCurrency('100.20')}}</p>
+                    <td class="text-end text-green-500 py-2">
+                        <p [style.fontSize]="((fontSize)+6)+'px'">{{subtotal |
+                            money:invoice.meta.currencySettings}}</p>
                     </td>
                 </tr>
-
             </tfoot>
         </table>
     </div>
-
 </ng-template>
+
 
 <ng-template #casualTemplate>
     <div class="w-full h-min">
@@ -135,8 +127,7 @@
             <div>
                 <div>
                     <h2 class="text-xl font-semibold py-2 " [style.color]="color" [style.fontSize]="(fontSize+5)+'px'">
-                        Abdul
-                        Jabbar
+                        My company name
                     </h2>
                     <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Invocify</p>
                     <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Colombia</p>
@@ -146,17 +137,20 @@
                 <div *ngIf="hasAccessibility('Recipent')" class="py-1">
                     <h2 [style.fontSize]="(fontSize+1)+'px'" class="mt-4 mb-2   font-bold" [style.color]="color">Billed
                         to</h2>
-                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Invocify</p>
-                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Colombia</p>
-                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">abduljabbar&#64;gmail.com</p>
-                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">+01733941913</p>
+
+                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_name}}</p>
+                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_email}}</p>
+                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_address}}</p>
+                    <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">{{invoice.client_phoneNumber}}
+                    </p>
                 </div>
             </div>
             <div class="text-right">
                 <h1 class="text-3xl uppercase  mb-2" [style.color]="color" [style.fontSize]="((fontSize)+20)+'px'">
                     Invoice</h1>
-                <p class=" pb-1 font-semibold" [style.color]="color" [style.fontSize]="fontSize+'px'">#145224</p>
-                <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Created: {{formetedDate()}}</p>
+                <p class=" pb-1 font-semibold" [style.color]="color" [style.fontSize]="fontSize+'px'">
+                    #{{invoice.invoice_id}}</p>
+                <p class="text-gray-500 pb-1" [style.fontSize]="(fontSize-1)+'px'">Created: {{formattedDate()}}</p>
             </div>
         </div>
     </div>
@@ -172,13 +166,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">01</td>
-                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">Maria Anders</td>
-                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">{{getCurrency('100.20')}}</td>
-                    <td class="celldata py-2 text-center" [style.fontSize]="fontSize+'px'">1</td>
-                    <td class="celldata py-2 text-right" [style.fontSize]="fontSize+'px'">
-                        {{getCurrency('100.20')}}
+                <tr *ngFor="let product of invoice.products; index as i">
+                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">{{i+1}}</td>
+                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">{{product.description}}</td>
+                    <td class="celldata py-2" [style.fontSize]="fontSize+'px'">{{product.price |
+                        money:invoice.meta.currencySettings}}</td>
+                    <td class="celldata py-2 text-center" [style.fontSize]="fontSize+'px'">{{product.quantity}}</td>
+                    <td class="celldata py-2 text-right" [style.fontSize]="fontSize+'px'">{{product.price |
+                        money:invoice.meta.currencySettings}}
                     </td>
                 </tr>
             </tbody>
@@ -188,7 +183,7 @@
                     <td class="text-center font-bold py-2 text-gray-800" [style.fontSize]="(fontSize+3)+'px'">Total:
                     </td>
                     <td class="text-right font-bold py-2" [style.color]="color" [style.fontSize]="(fontSize+3)+'px'">
-                        {{getCurrency('100.20')}}</td>
+                        {{subtotal | money:invoice.meta.currencySettings}}</td>
                 </tr>
             </tfoot>
         </table>
@@ -222,8 +217,9 @@
                 <h1 class="text-3xl uppercase mb-2" [style.color]="color" [style.fontSize]="((fontSize) + 20) + 'px'">
                     Invoice
                 </h1>
-                <p class="font-semibold pb-1" [style.color]="color" [style.fontSize]="fontSize + 'px'">#145224</p>
-                <p [style.fontSize]="(fontSize - 1) + 'px'" class="text-gray-500 pb-1">Created: {{formetedDate()}}</p>
+                <p class="font-semibold pb-1" [style.color]="color" [style.fontSize]="fontSize + 'px'">
+                    #{{invoice.invoice_id}}</p>
+                <p [style.fontSize]="(fontSize - 1) + 'px'" class="text-gray-500 pb-1">Created: {{formattedDate()}}</p>
             </div>
         </div>
     </div>
@@ -248,13 +244,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">01</td>
-                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">Maria Anders</td>
-                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">{{getCurrency('100.20')}}</td>
-                    <td class="celldata text-right py-2" [style.fontSize]="fontSize + 'px'">1</td>
+                <tr *ngFor="let product of invoice.products; index as i">
+                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">{{i+1}}</td>
+                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">{{product.description}}</td>
+                    <td class="celldata py-2" [style.fontSize]="fontSize + 'px'">{{product.price |
+                        money:invoice.meta.currencySettings}}</td>
+                    <td class="celldata text-right py-2" [style.fontSize]="fontSize + 'px'">{{product.quantity}}</td>
                     <td class="celldata text-right py-2 " [style.fontSize]="fontSize + 'px'">
-                        <p class="pr-2">{{getCurrency('100.20')}}</p>
+                        <p class="pr-2">{{product.price |
+                            money:invoice.meta.currencySettings}}</p>
                     </td>
                 </tr>
             </tbody>
@@ -265,7 +263,7 @@
                         Total:</td>
                     <td class="text-right font-bold py-2" [style.color]="color"
                         [style.fontSize]="(fontSize + 3) + 'px'">
-                        {{getCurrency('100.20')}}</td>
+                        {{subtotal | money:invoice.meta.currencySettings}}</td>
                 </tr>
             </tfoot>
         </table>
@@ -276,10 +274,10 @@
         <h2 [style.fontSize]="(fontSize + 1) + 'px'" class="font-bold text-gray-700 mb-2" [style.color]="color">
             Billed to</h2>
         <div class="text-gray-500">
-            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">Invocify</p>
-            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">Colombia</p>
-            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">abduljabbar&#64;gmail.com</p>
-            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">+01733941913</p>
+            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_name}}</p>
+            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_email}}</p>
+            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_address}}</p>
+            <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_phoneNumber}}</p>
         </div>
     </div>
 
@@ -304,9 +302,9 @@
                     <div [style.color]="color">
                         <span class="mr-4 text-sm">■ </span> #
                     </div>
-                    <span id="invoice_id" class="text-gray-500">0196023</span>
+                    <span id="invoice_id" class="text-gray-500">{{invoice.invoice_id}}</span>
                 </div>
-                <p class="text-gray-500 text-lg font-semi ">Created: {{formetedDate()}}</p>
+                <p class="text-gray-500 text-lg font-semi ">Created: {{formattedDate()}}</p>
             </div>
             <br>
             <section class="flex text-center w-full justify-between">
@@ -328,10 +326,10 @@
                         [style.color]="color">
                         Billed to</h2>
                     <div class="text-gray-500">
-                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">Invocify</p>
-                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">Colombia</p>
-                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">abduljabbar&#64;gmail.com</p>
-                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">+01733941913</p>
+                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_name}}</p>
+                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_email}}</p>
+                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_address}}</p>
+                        <p [style.fontSize]="(fontSize - 1) + 'px'" class="pb-1">{{invoice.client_phoneNumber}}</p>
                     </div>
 
                 </div>
@@ -351,15 +349,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td [style.fontSize]="(fontSize+1) + 'px'" class="px-4 py-2 border">Shared Hosting - Simple Plan
-                        (Monthly)</td>
+                <tr *ngFor="let product of invoice.products; index as i">
+                    <td [style.fontSize]="(fontSize+1) + 'px'" class="px-4 py-2 border">{{product.description}}</td>
                     <td [style.fontSize]="(fontSize+1) + 'px'"
-                        class="px-4 py-2 text-right border tabular-nums slashed-zero">1</td>
+                        class="px-4 py-2 text-right border tabular-nums slashed-zero">{{product.quantity}}</td>
                     <td [style.fontSize]="(fontSize+1) + 'px'"
-                        class="px-4 py-2 text-right border tabular-nums slashed-zero">{{getCurrency('100.20')}}</td>
+                        class="px-4 py-2 text-right border tabular-nums slashed-zero">{{product.price |
+                        money:invoice.meta.currencySettings}}</td>
                     <td [style.fontSize]="(fontSize+1) + 'px'"
-                        class="px-4 py-2 text-right border tabular-nums slashed-zero"> {{getCurrency('100.20')}}</td>
+                        class="px-4 py-2 text-right border tabular-nums slashed-zero"> {{product.price |
+                        money:invoice.meta.currencySettings}}</td>
+                </tr>
+                <tr class="text-white" [style.backgroundColor]="color">
+                    <td class="invisible"></td>
+                    <td class="invisible"></td>
+                    <td [style.fontSize]="(fontSize+1) + 'px'" class="px-4 py-2 text-right border">Sub Total</td>
+                    <td [style.fontSize]="(fontSize+1) + 'px'"
+                        class="px-4 py-2 text-right border tabular-nums slashed-zero"> {{subtotal |
+                        money:invoice.meta.currencySettings}}</td>
                 </tr>
                 <tr class="text-white" [style.backgroundColor]="color">
                     <td class="invisible"></td>
@@ -372,17 +379,10 @@
                 <tr class="text-white" [style.backgroundColor]="color">
                     <td class="invisible"></td>
                     <td class="invisible"></td>
-                    <td [style.fontSize]="(fontSize+1) + 'px'" class="px-4 py-2 text-right border">TAX</td>
-                    <td [style.fontSize]="(fontSize+1) + 'px'"
-                        class="px-4 py-2 text-right border tabular-nums slashed-zero"> {{getCurrency('100.20')}}</td>
-                </tr>
-                <tr class="text-white" [style.backgroundColor]="color">
-                    <td class="invisible"></td>
-                    <td class="invisible"></td>
                     <td [style.fontSize]="(fontSize+1) + 'px'" class="px-4 py-2 font-extrabold text-right border">Total
                     </td>
                     <td [style.fontSize]="(fontSize+1) + 'px'"
-                        class="px-4 py-2 text-right border tabular-nums slashed-zero"> {{getCurrency('100.20')}}</td>
+                        class="px-4 py-2 text-right border tabular-nums slashed-zero">{{subtotal | money:invoice.meta.currencySettings}}</td>
                 </tr>
             </tbody>
         </table>

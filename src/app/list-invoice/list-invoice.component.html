@@ -41,9 +41,9 @@
     <div content>
 
         <div class="bg-gray-100 flex flex-wrap">
-            <div *ngFor="let item of statusDef" class="p-6 w-full lg:w-1/2 ">
+            <div *ngFor="let item of invoices" class="p-6 w-full lg:w-1/2 ">
                 <!-- <div class="border-t-[6px] bg-white shadow-md rounded border-pink-600"> -->
-                <app-invoice-card  [item]="item"/>
+                <app-invoice-card [item]="item" />
             </div>
 
         </div>

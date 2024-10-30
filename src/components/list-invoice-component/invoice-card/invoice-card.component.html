@@ -1,11 +1,12 @@
-<div class="border-t-[6px] w-full bg-white shadow-md rounded" [ngClass]="item.border">
+<div class="border-t-[6px] w-full bg-white shadow-md rounded" [ngClass]="item.statusCombination.border">
     <div class="p-8">
         <div class="flex items-center justify-between">
 
-            <p class="uppercase items-center flex gap-x-2 text-[16px] font-bold opacity-70" [ngClass]="item.color">
-                <span [ngClass]="item.color" class="font-extrabold" nz-icon [nzType]="item.icon"
-                    nzTheme="outline"></span>
-                <span [ngClass]="item.color">{{ item.status }}</span>
+            <p class="uppercase items-center flex gap-x-2 text-[16px] font-bold opacity-70"
+                [ngClass]="item.statusCombination.color">
+                <span [ngClass]="item.statusCombination.color" class="font-extrabold" nz-icon
+                    [nzType]="item.statusCombination.icon" nzTheme="outline"></span>
+                <span [ngClass]="item.statusCombination.color">{{ item.status }}</span>
             </p>
 
             <span class="flex gap-x-2 text-gray-500">
@@ -16,7 +17,7 @@
         <div class="uppercase mt-6">
             <div class="w-full">
                 <label class="text-gray-400 text-xs">client</label>
-                <h2 class="mt-1 mb-3 font-semibold text-gray-500   text-xl">Abdul Jabbar</h2>
+                <h2 class="mt-1 mb-3 font-semibold text-gray-500   text-xl">{{item.client_name}}</h2>
             </div>
             <div class="flex justify-between gap-x-4">
                 <div class="w-full">
@@ -25,7 +26,7 @@
                         <h4 (click)="copyToClipboard()" nz-popover nzPopoverPlacement="bottom"
                             nzPopoverContent="Click to Copy"
                             class="w-min border-b-2 border-dotted border-gray-900 mt-1 mb-3 font-semibold text-gray-500   cursor-pointer">
-                            <span id="content-to-copy"> 457554</span>
+                            <span id="content-to-copy"> {{item.invoice_id}}</span>
                         </h4>
                     </div>
                     <div>
@@ -34,21 +35,23 @@
                     </div>
                     <div>
                         <label class="text-gray-400 text-xs">created on</label>
-                        <h4 class="mt-1 mb-3 font-semibold text-gray-500  ">09/3/2024</h4>
+                        <h4 class="mt-1 mb-3 font-semibold text-gray-500 ">09/3/2024</h4>
                     </div>
                 </div>
                 <div class="w-full">
                     <div>
                         <label class="text-gray-400 text-xs">Total value</label>
-                        <h4 class="mt-1 mb-3 font-semibold text-gray-500  ">USD 457</h4>
+                        <h4 class="mt-1 mb-3 font-semibold text-gray-500 ">{{getTotalValue(item.products)| money:
+                            item.meta.currencySettings}}
+                        </h4>
                     </div>
                     <div>
                         <label class="text-gray-400 text-xs">Remaining balance</label>
-                        <h4 class="mt-1 mb-3 font-semibold text-gray-500  ">USD 454.0</h4>
+                        <h4 class="mt-1 mb-3 font-semibold text-gray-500 ">USD 454.0</h4>
                     </div>
                     <div>
                         <label class="text-gray-400 text-xs">Due date</label>
-                        <h4 class="mt-1 mb-3 font-semibold text-gray-500  ">USD 454.0</h4>
+                        <h4 class="mt-1 mb-3 font-semibold text-gray-500 ">USD 454.0</h4>
                     </div>
                 </div>
             </div>
@@ -56,7 +59,7 @@
     </div>
     <div class="w-full uppercase px-8 py-5 flex gap-x-6 border-t  ">
 
-        <div class="w-full uppercase relative text-[13px] flex items-center rounded border  ">
+        <div class="w-full uppercase relative text-[13px] flex items-center rounded border ">
             <button class="w-full uppercase border-r">
                 mark as paid
             </button>

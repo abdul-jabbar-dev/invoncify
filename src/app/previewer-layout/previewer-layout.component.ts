@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -10,6 +12,9 @@ import { format } from 'date-fns';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { InvoiceService } from '../services/invoice.service';
+import { ActivatedRoute } from '@angular/router';
+import { RInvoice } from '../types/invoice.model';
 
 enum Alignment {
   Center = 'center',
@@ -29,11 +34,15 @@ enum Language {
   styleUrls: ['./previewer-layout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlankLayoutComponent {
+export class BlankLayoutComponent implements OnInit {
   @ViewChild('pdfSection', { static: false }) pdfSection!: ElementRef;
   @Output() elementSent = new EventEmitter<ElementRef>();
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private invoiceRequest: InvoiceService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @Output() template: string = 'Business';
   @Output() fontSize: number = 12;
@@ -84,6 +93,32 @@ export class BlankLayoutComponent {
   ];
 
   @Output() alignment: Alignment = Alignment.Top;
+
+  isLoading: boolean = false;
+  @Output() invoice!: RInvoice;
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.invoiceRequest.getAInvoice(id).subscribe(
+          (res) => {
+            this.invoice = res;
+            this.isLoading = false;
+            this.cdr.markForCheck();
+          },
+          (error) => {
+            console.error('Error fetching invoice:', error);
+            this.isLoading = false;
+          }
+        );
+      } else {
+        console.warn('No invoice ID provided');
+        this.isLoading = false;
+      }
+    });
+  }
+
   hasAccessibility(label: string) {
     const isIt = !!this.accessibility.find((pro) => pro.label === label)
       ?.checked;
@@ -95,10 +130,6 @@ export class BlankLayoutComponent {
 
   getDate(): string {
     return format(new Date(Date.now()), this.dateFormat);
-  }
-
-  setDefault(arg0: any): void {
-    console.log(arg0);
   }
 
   getAccesebilitis(
@@ -139,5 +170,4 @@ export class BlankLayoutComponent {
       pdf.save('download.pdf');
     });
   }
- 
 }

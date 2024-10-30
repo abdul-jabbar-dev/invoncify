@@ -50,6 +50,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NewInvoiceOptionsComponent } from 'src/components/new-invoice-component/new-invoice-options/new-invoice-options.component';
 import { AuthComponent } from './auth/auth.component'; 
 import { ModalComponent } from 'src/components/common/modal/modal.component';
+import { MoneyPipe } from './pipe/money.pipe';
 registerLocaleData(en);
 const ngZorroConfig: NzConfig = {
   message: { nzTop: 120 },
@@ -81,7 +82,7 @@ const ngZorroConfig: NzConfig = {
     PreviewerComponent,
     BlankLayoutComponent,
     NewInvoiceOptionsComponent,
-    AuthComponent,ModalComponent  ],
+    AuthComponent,ModalComponent, MoneyPipe  ],
   imports: [
     
     BrowserModule,

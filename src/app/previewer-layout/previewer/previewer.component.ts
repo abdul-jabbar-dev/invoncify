@@ -1,17 +1,7 @@
-import {
-  AfterContentChecked,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { format } from 'date-fns';
+import { RInvoice } from 'src/app/types/invoice.model';
+
 enum Alignment {
   Center = 'center',
   Bottom = 'flex-end',
@@ -24,77 +14,78 @@ enum Language {
   Chinese = 'chinese',
 }
 
+type AccessibilityOption = {
+  label: string;
+  value: string;
+  checked?: boolean;
+};
+
 @Component({
   selector: 'app-previewer',
   templateUrl: './previewer.component.html',
   styleUrls: ['./previewer.component.css'],
 })
-export class PreviewerComponent{
-  // start temp
+export class PreviewerComponent implements OnChanges {
+  // Temporary currency object
   currency = {
     id: 'f14f88d1-9077-42bd-8519-135956204f33',
     country: 'United States',
     currencyName: 'US Dollar',
     currencySymbol: '$',
     currencyNameShort: 'USD',
-    symbolPlacement: 'before',
+    symbolPlacement: 'before' as 'before' | 'after',
   };
-  //end temp
-
-
 
   id: string | null = null;
-  date = Date.now();
+ 
+
   @Input() imgWidth: number = 50;
   @Input() template: string = 'Business';
   @Input() fontSize: number = 12;
   @Input() color: string = '#697689';
   @Input() dateFormat: string = 'MM/dd/yyyy';
+  subtotal = 0;
   @Input() language: Language = Language.English;
   @Input() alignment: Alignment = Alignment.Top;
-  @Input() accessibility: {
-    label: string;
-    value: string;
-    checked?: boolean;
-  }[] = [
+  @Input() accessibility: AccessibilityOption[] = [
     { label: 'Logo', value: 'Logo', checked: true },
     { label: 'Symbol', value: 'Symbol', checked: true },
-    { label: 'Recipent', value: 'Recipent', checked: true },
+    { label: 'Recipient', value: 'Recipient', checked: true },
     { label: 'Accent Color', value: 'Accent Color', checked: true },
   ];
 
-  constructor(private route: ActivatedRoute) {}
+  @Input() invoice!: RInvoice;
+  isLoading: boolean = false;
+  constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['invoice']?.currentValue) {
+      const { products } = changes['invoice'].currentValue as RInvoice;
 
-
-  getCurrency(arg0: string) {
-    const isSymble = !!this.accessibility.find((pro) => pro.label === 'Symbol')
-      ?.checked;
-
-    let symble = this.currency.currencyNameShort;
-
-    if (isSymble) {
-      symble = this.currency.currencySymbol;
-    } else {
-      symble = this.currency.currencyNameShort;
+      this.subtotal = products.reduce(
+        (sum, { price, quantity }) => sum + price * quantity,
+        0
+      );
     }
-    const formattedCurrency =
-      this.currency.symbolPlacement === 'before'
-        ? `${symble}\u00A0${arg0}`
-        : `${arg0}\u00A0${symble}`;
-
-    return formattedCurrency;
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      console.log(this.id);
-    });
+  getCurrency(amount: string | number) {
+    const isSymbolChecked =
+      this.accessibility.find((opt) => opt.label === 'Symbol')?.checked ??
+      false;
+    const symbol = isSymbolChecked
+      ? this.currency.currencySymbol
+      : this.currency.currencyNameShort;
+
+    return this.currency.symbolPlacement === 'before'
+      ? `${symbol}\u00A0${amount}`
+      : `${amount}\u00A0${symbol}`;
   }
+
   hasAccessibility(label: string) {
-    return !!this.accessibility.find((pro) => pro.label === label)?.checked;
+    return this.accessibility.some((opt) => opt.label === label && opt.checked);
   }
-  formetedDate() {
-    return format(this.date, this.dateFormat);
+
+  formattedDate() {
+    return format(this.invoice.meta.creationDate as unknown as Date, this.dateFormat);
   }
 }
